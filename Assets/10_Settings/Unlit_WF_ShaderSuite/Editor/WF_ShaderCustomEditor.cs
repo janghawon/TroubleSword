@@ -500,7 +500,7 @@ namespace UnlitWF
             // 現在のシーンにある LightmapStatic の付いた MeshRenderer が使っているマテリアルのうち、このShaderGUIが扱うマテリアルの配列
             var allStaticMaterialsInScene = scene.GetRootGameObjects()
                 .SelectMany(go => go.GetComponentsInChildren<MeshRenderer>(true))
-                .Where(mf => GameObjectUtility.AreStaticEditorFlagsSet(mf.gameObject, StaticEditorFlags.LightmapStatic))
+                .Where(mf => GameObjectUtility.AreStaticEditorFlagsSet(mf.gameObject, StaticEditorFlags.ContributeGI))
                 // .Where(mf => 0 < mf.scaleInLightmap) // Unity2018では見えない
                 .SelectMany(mf => mf.sharedMaterials)
                 .Where(mat => mat != null && mat.shader == shader)
