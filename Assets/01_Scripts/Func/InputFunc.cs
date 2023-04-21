@@ -6,8 +6,11 @@ using System;
 
 public class InputFunc : MonoBehaviour
 {
+    float _atkCount;
+    
     Vector3 _dirInput;
     public UnityEvent<Vector3> OnMoveKeyPress = null;
+    public UnityEvent OnAttackPress = null;
 
     void UpdateMoveInput()
     {
@@ -19,8 +22,17 @@ public class InputFunc : MonoBehaviour
         OnMoveKeyPress?.Invoke(_dirInput);
     }
 
+    void UpdateAttackInput()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            OnAttackPress?.Invoke();
+        }
+    }
+
     void Update()
     {
         UpdateMoveInput();
+        UpdateAttackInput();
     }
 }

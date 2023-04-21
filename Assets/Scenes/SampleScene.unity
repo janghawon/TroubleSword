@@ -345,6 +345,7 @@ GameObject:
   - component: {fileID: 1255363984}
   - component: {fileID: 1255363983}
   - component: {fileID: 1255363985}
+  - component: {fileID: 1255363986}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -441,6 +442,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnAttackPress:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1255363985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,6 +457,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5bfeb88b2c64344a934571732a687e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1255363986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255363980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ae7038106d6574087c2b4d9c0f3c6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1617514272
 PrefabInstance:
   m_ObjectHideFlags: 0
