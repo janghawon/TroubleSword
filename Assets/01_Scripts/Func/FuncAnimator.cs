@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class FuncAnimator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Animator _animator;
+
+    private void Awake()
     {
-        
+        _animator = transform.Find("Visual").GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetMoveAnim(Vector3 value)
     {
-        
+        _animator.SetFloat("MoveValue", value.sqrMagnitude);
     }
 }

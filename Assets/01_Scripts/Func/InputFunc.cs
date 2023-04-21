@@ -15,6 +15,7 @@ public class InputFunc : MonoBehaviour
         float ZInput = Input.GetAxis("Vertical");
 
         _dirInput = new Vector3(XInput, 0, ZInput);
+        _dirInput.Normalize();
         OnMoveKeyPress?.Invoke(_dirInput);
     }
 

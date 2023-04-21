@@ -4,80 +4,57 @@ using UnityEngine;
 
 public class MovementFunc : MonoBehaviour
 {
-    [SerializeField]
-    private float _moveSpeed = 0f, _gravity = -9.8f;
+    [Header("컴포넌트")]
+    private CharacterController _playerController;
 
-    private CharacterController _charController;
-    private FuncAnimator _funcAnimator;
+    [Header("수치 조정")]
+    public bool canMove;
+    [SerializeField] private float _playerSpeed;
+    [SerializeField] private float _gravtiy;
+    [SerializeField] private float _turnningSpeed;
 
-    private Vector3 _movementVelocity;
-    public Vector3 MovementVelocity => _movementVelocity;
+    [Header("움직임 기능")]
+    private Vector3 _moveDir;
     private float _verticalVelocity;
-    private Vector3 _inputVelocity;
 
-    public bool IsActiveMove { get; set; }
+    public void SetDirection(Vector3 value)
+    {
+        _moveDir = value;
+    }
 
     private void Awake()
     {
-        _charController = GetComponent<CharacterController>();
-        _funcAnimator = transform.Find("Visual").GetComponent<FuncAnimator>();
+        canMove = true;
+        _playerController = GetComponent<CharacterController>();
     }
-
-    public void SetMovementVelocity(Vector3 value)
+    private void PlayerGravity()
     {
-        _inputVelocity = value;
-        _movementVelocity = value;
-    }
-
-    private void CalculatePlayerMovement()
-    {
-        //여기는 나중에
-        _inputVelocity.Normalize();
-
-        _movementVelocity = Quaternion.Euler(0, -45f, 0) * _inputVelocity;
-        //쿼터니언 곱셉 교환법칙 성립 안한다.
-
-        //_funcAnimator?.SetSpeed(_movementVelocity.sqrMagnitude); //이동속도 반영
-
-        _movementVelocity *= _moveSpeed * Time.fixedDeltaTime;
-        if (_movementVelocity.sqrMagnitude > 0)
+        if (_playerController.isGrounded == false)
         {
-            transform.rotation = Quaternion.LookRotation(_movementVelocity);
-        }
-
-    }
-
-    public void SetRotation(Vector3 target)
-    {
-        Vector3 dir = target - transform.position;
-        dir.y = 0;
-        transform.rotation = Quaternion.LookRotation(dir);
-    }
-
-    public void StopImmediately()
-    {
-        _movementVelocity = Vector3.zero;
-       // _funcAnimator?.SetSpeed(0); //이동속도 반영
-    }
-
-    private void FixedUpdate()
-    {
-        if (IsActiveMove)
-        {
-            CalculatePlayerMovement();
-        }
-
-        if (_charController.isGrounded == false)
-        {
-            _verticalVelocity = _gravity * Time.fixedDeltaTime;
+            _verticalVelocity = _gravtiy * Time.fixedDeltaTime;
         }
         else
         {
-            _verticalVelocity = _gravity * 0.3f * Time.fixedDeltaTime;
+            _verticalVelocity = _gravtiy * 0.3f * Time.fixedDeltaTime;
         }
+    }
+    private void CalculatorMove()
+    {
+        _moveDir *= _playerSpeed * Time.fixedDeltaTime;
+        if (_moveDir.sqrMagnitude > 0 && canMove)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation,
+                                                  Quaternion.LookRotation(_moveDir),
+                                                  Time.fixedDeltaTime * _turnningSpeed);
 
-        Vector3 move = _movementVelocity + _verticalVelocity * Vector3.up;
-        _charController.Move(move);
-        //_funcAnimator?.SetAirbone(!_charController.isGrounded);
+            Vector3 move = _moveDir + _verticalVelocity * Vector3.up;
+            _playerController.Move(move);
+        }
+    }
+    
+    void FixedUpdate()
+    {
+        PlayerGravity();
+        CalculatorMove();
     }
 }
