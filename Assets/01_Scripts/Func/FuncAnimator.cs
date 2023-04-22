@@ -5,6 +5,8 @@ using UnityEngine;
 public class FuncAnimator : MonoBehaviour
 {
     private Animator _animator;
+    private readonly int _moveHash = Animator.StringToHash("MoveValue");
+    
 
     private void Awake()
     {
@@ -13,6 +15,16 @@ public class FuncAnimator : MonoBehaviour
 
     public void SetMoveAnim(Vector3 value)
     {
-        _animator.SetFloat("MoveValue", value.sqrMagnitude);
+        _animator.SetFloat(_moveHash, value.sqrMagnitude);
     }
+
+    public void SetAttackAnim(bool value)
+    {
+        if (value)
+            _animator.SetTrigger("atkTrigger");
+        else
+            _animator.ResetTrigger("atkTrigger");
+    }
+
+    
 }

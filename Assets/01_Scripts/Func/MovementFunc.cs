@@ -27,6 +27,12 @@ public class MovementFunc : MonoBehaviour
         canMove = true;
         _playerController = GetComponent<CharacterController>();
     }
+
+    public void StopImmediately()
+    {
+        _moveDir = Vector3.zero;
+    }
+
     private void PlayerGravity()
     {
         if (_playerController.isGrounded == false)
