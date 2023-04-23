@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class FuncAnimator : MonoBehaviour
 {
+    SKillCoolCounter _sKillCoolCounter;
     private Animator _animator;
     private readonly int _moveHash = Animator.StringToHash("MoveValue");
     private readonly int _atkhash = Animator.StringToHash("atkCombo");
@@ -20,6 +21,7 @@ public class FuncAnimator : MonoBehaviour
     {
         _animator = transform.Find("Visual").GetComponent<Animator>();
         ac = _animator.runtimeAnimatorController;
+        _sKillCoolCounter = GameObject.Find("SkillSorting").GetComponent<SKillCoolCounter>();
     }
 
     private void Start()
@@ -50,6 +52,7 @@ public class FuncAnimator : MonoBehaviour
             {
                 comboCount++;
             }
+            
             StartCoroutine(ComboTimer());
         }
     }
@@ -58,6 +61,7 @@ public class FuncAnimator : MonoBehaviour
     {
         yield return null;
         _animator.ResetTrigger(_atkTriggerhash);
+        _sKillCoolCounter.StartSkillCool(_waitTime);
         yield return new WaitForSeconds(_waitTime);
         canAtk = true;
     }
