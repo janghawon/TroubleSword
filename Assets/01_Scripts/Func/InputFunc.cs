@@ -8,7 +8,7 @@ public class InputFunc : MonoBehaviour
 {
     Vector3 _dirInput;
     public UnityEvent<Vector3> OnMoveKeyPress = null;
-    public UnityEvent<bool> OnAttackPress = null;
+    public UnityEvent OnAttackPress = null;
 
     void UpdateMoveInput()
     {
@@ -24,7 +24,7 @@ public class InputFunc : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            OnAttackPress?.Invoke(true);
+            OnAttackPress?.Invoke();
         }
     }
 
