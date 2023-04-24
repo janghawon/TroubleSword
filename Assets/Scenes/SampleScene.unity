@@ -273,8 +273,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -315, y: 51}
-  m_SizeDelta: {x: 800, y: 100}
+  m_AnchoredPosition: {x: -429.73523, y: 51}
+  m_SizeDelta: {x: 570.5295, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &470076407
 MonoBehaviour:
@@ -1291,10 +1291,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnAttackPress:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 1255363985}
         m_TargetAssemblyTypeName: FuncAnimator, Assembly-CSharp
-        m_MethodName: SetMoveAnim
-        m_Mode: 0
+        m_MethodName: AttackAnim
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1303,12 +1306,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnAttackPress:
+  OnDashPress:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1255363985}
         m_TargetAssemblyTypeName: FuncAnimator, Assembly-CSharp
-        m_MethodName: AttackAnim
+        m_MethodName: DashAnim
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1330,10 +1333,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5bfeb88b2c64344a934571732a687e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _atkClips:
+  _aniClips:
   - {fileID: 7400000, guid: cada39a7f12ca8e43b8498961437abb0, type: 2}
   - {fileID: 7400000, guid: 3f6377d924c5a944eaf41558e4b4a7dd, type: 2}
   - {fileID: 7400000, guid: 5410528db42113346a13d981d468573f, type: 2}
+  - {fileID: 7400000, guid: 3e40f222921adf64b876339ec3de192c, type: 2}
 --- !u!114 &1255363986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1410,8 +1414,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3495041b342010546aa0ad2668fcc900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _outLine: {fileID: 0}
-  _filter: {fileID: 0}
+  _imageList:
+  - {fileID: 21300000, guid: 2e2a83c55bbf0354090322974ec099d3, type: 3}
+  - {fileID: 21300000, guid: e33331efe67173943b1a9ec9c8c41b4f, type: 3}
+  - {fileID: 21300000, guid: a88f5f3e8f546374980d7ac04501028a, type: 3}
 --- !u!1 &1549080399
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class MovementFunc : MonoBehaviour
 {
     [Header("컴포넌트")]
     private CharacterController _playerController;
+    private FuncAnimator _funcAnimator;
 
     [Header("수치 조정")]
     public bool canMove;
@@ -19,13 +20,18 @@ public class MovementFunc : MonoBehaviour
 
     public void SetDirection(Vector3 value)
     {
-        _moveDir = value;
+        if(canMove)
+        {
+            _moveDir = value;
+            _funcAnimator.SetMoveAnim(value);
+        }
     }
 
     private void Awake()
     {
         canMove = true;
         _playerController = GetComponent<CharacterController>();
+        _funcAnimator = GetComponent<FuncAnimator>();
     }
 
     public void StopImmediately()

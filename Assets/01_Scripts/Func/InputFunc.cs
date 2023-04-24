@@ -9,6 +9,7 @@ public class InputFunc : MonoBehaviour
     Vector3 _dirInput;
     public UnityEvent<Vector3> OnMoveKeyPress = null;
     public UnityEvent OnAttackPress = null;
+    public UnityEvent OnDashPress = null;
 
     void UpdateMoveInput()
     {
@@ -28,9 +29,18 @@ public class InputFunc : MonoBehaviour
         }
     }
 
+    void UpdateDashInput()
+    {
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            OnDashPress?.Invoke();
+        }
+    }
+
     void Update()
     {
         UpdateMoveInput();
         UpdateAttackInput();
+        UpdateDashInput();
     }
 }
