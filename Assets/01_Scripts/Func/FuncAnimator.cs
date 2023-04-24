@@ -8,8 +8,8 @@ public class FuncAnimator : MonoBehaviour
     SKillCoolCounter _sKillCoolCounter;
     private Animator _animator;
     private readonly int _moveHash = Animator.StringToHash("MoveValue");
-    private readonly int _atkhash = Animator.StringToHash("atkCombo");
-    private readonly int _atkTriggerhash = Animator.StringToHash("atkTrigger");
+    private readonly int _atkHash = Animator.StringToHash("atkCombo");
+    private readonly int _atkBooleanHash = Animator.StringToHash("isAtk");
 
     private int comboCount;
     private bool canAtk;
@@ -39,11 +39,11 @@ public class FuncAnimator : MonoBehaviour
         if(canAtk)
         {
             canAtk = false;
-            _animator.SetFloat(_atkhash, comboCount);
-            _animator.SetTrigger(_atkTriggerhash);
+            _animator.SetFloat(_atkHash, comboCount);
+            _animator.SetBool(_atkBooleanHash, true);
 
             _waitTime = AttackDuration();
-            Debug.Log(_waitTime);
+            _sKillCoolCounter.StartSkillCool(_waitTime + 0.1f, comboCount);
             if (comboCount == 2)
             {
                 comboCount = 0;
@@ -59,10 +59,8 @@ public class FuncAnimator : MonoBehaviour
 
     IEnumerator ComboTimer()
     {
-        yield return null;
-        _animator.ResetTrigger(_atkTriggerhash);
-        _sKillCoolCounter.StartSkillCool(_waitTime);
-        yield return new WaitForSeconds(_waitTime);
+        yield return new WaitForSeconds(_waitTime + 0.1f);
+        _animator.SetBool(_atkBooleanHash, false);
         canAtk = true;
     }
 
