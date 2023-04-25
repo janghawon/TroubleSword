@@ -15,14 +15,14 @@ public class MovementFunc : MonoBehaviour
     [SerializeField] private float _turnningSpeed;
 
     [Header("움직임 기능")]
-    private Vector3 _moveDir;
+    public Vector3 MoveDir;
     private float _verticalVelocity;
 
     public void SetDirection(Vector3 value)
     {
         if(canMove)
         {
-            _moveDir = value;
+            MoveDir = value;
             _funcAnimator.SetMoveAnim(value);
         }
     }
@@ -36,7 +36,7 @@ public class MovementFunc : MonoBehaviour
 
     public void StopImmediately()
     {
-        _moveDir = Vector3.zero;
+        MoveDir = Vector3.zero;
     }
 
     private void PlayerGravity()
@@ -52,14 +52,14 @@ public class MovementFunc : MonoBehaviour
     }
     private void CalculatorMove()
     {
-        _moveDir *= _playerSpeed * Time.fixedDeltaTime;
-        if (_moveDir.sqrMagnitude > 0 && canMove)
+        MoveDir *= _playerSpeed * Time.fixedDeltaTime;
+        if (MoveDir.sqrMagnitude > 0 && canMove)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation,
-                                                  Quaternion.LookRotation(_moveDir),
+                                                  Quaternion.LookRotation(MoveDir),
                                                   Time.fixedDeltaTime * _turnningSpeed);
 
-            Vector3 move = _moveDir + _verticalVelocity * Vector3.up;
+            Vector3 move = MoveDir + _verticalVelocity * Vector3.up;
             _playerController.Move(move);
         }
     }
