@@ -18,8 +18,7 @@ public class FeedBackEffect : MonoBehaviour
     }
     IEnumerator EndEffect()
     {
-        yield return new WaitForSeconds(0.1f);
-        _particleModule.Stop();
+        yield return new WaitForSeconds(0.5f);
         Destroy(this.gameObject);
     }
     
