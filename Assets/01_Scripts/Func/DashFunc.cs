@@ -6,7 +6,7 @@ using DG.Tweening;
 public class DashFunc : MonoBehaviour
 {
     readonly int _valueHash = Shader.PropertyToID("_value");
-
+    [SerializeField] private GameObject _rayAnchor;
     MaterialPropertyBlock _material;
     [SerializeField] private float _dashSpeed;
     [SerializeField] private float _dashDuration;
@@ -16,8 +16,11 @@ public class DashFunc : MonoBehaviour
     MovementFunc _moveFunc;
     Vector3 _dashDir;
     bool isDashing;
+    bool ishitDis;
     float _dashTimeLeft;
 
+    [SerializeField] private LayerMask _layerMask;
+    [SerializeField] private GameObject _feedbackPrefab;
     private void Awake()
     {
         _material = new MaterialPropertyBlock();
@@ -42,6 +45,7 @@ public class DashFunc : MonoBehaviour
         _trail.enabled = true;
         _dashPos.gameObject.transform.DOShakePosition(_dashDuration, 1, 5);
         StartCoroutine(DashValueChange());
+        DamageCast();
     }
 
     IEnumerator DashValueChange()
@@ -74,9 +78,23 @@ public class DashFunc : MonoBehaviour
         _moveFunc.canMove = true;
     }
 
+    void DamageCast()
+    {
+        RaycastHit hit;
+        ishitDis = Physics.BoxCast(_rayAnchor.transform.position, transform.lossyScale / 2, transform.forward,
+            out hit, transform.rotation, 7);
+        if (ishitDis)
+        {
+            Debug.Log(hit.collider.gameObject.name);
+
+            GameObject feedbackEff = Instantiate(_feedbackPrefab);
+            feedbackEff.transform.position = hit.point;
+        }
+    }
+
     private void FixedUpdate()
     {
-        if(isDashing)
+        if (isDashing)
         {
             _moveFunc.gameObject.transform.position += _dashDir * _dashSpeed * Time.fixedDeltaTime;
             

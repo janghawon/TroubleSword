@@ -52,8 +52,6 @@ public class AttackFunc : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 2, _layerMask, QueryTriggerInteraction.Ignore))
         {
-            Debug.Log(hit.collider.gameObject.name);
-
             TimeController.Instance.ModifyTimeScale(0.2f, 0.1f, () =>
             {
                 TimeController.Instance.ModifyTimeScale(1, 0.02f, null);
@@ -63,7 +61,6 @@ public class AttackFunc : MonoBehaviour
 
             GameObject feedbackEff = Instantiate(_feedbackPrefab);
             feedbackEff.transform.position = hit.point;
-            feedbackEff.transform.rotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0, -90)); // var = 프리팹 로테이션 값
         }
     }
 
