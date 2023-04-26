@@ -18,6 +18,8 @@ public class AttackFunc : MonoBehaviour
 
     [SerializeField] private Color _startColor;
     [SerializeField] private Color _endColor;
+
+    [SerializeField] private GameObject _feedbackPrefab;
     private void Awake()
     {
         _material = new MaterialPropertyBlock();
@@ -48,7 +50,7 @@ public class AttackFunc : MonoBehaviour
         Ray ray = new Ray(_rayAnchor.transform.position, transform.forward);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 10, _layerMask, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(ray, out hit, 2, _layerMask, QueryTriggerInteraction.Ignore))
         {
             Debug.Log(hit.collider.gameObject.name);
 
@@ -57,19 +59,17 @@ public class AttackFunc : MonoBehaviour
                 TimeController.Instance.ModifyTimeScale(1, 0.02f, null);
                 Time.timeScale = 1;
             });
-            GameManager.Instance.ShakeScreen(0.2f, 1.5f);
+            GameManager.Instance.ShakeScreen(0.1f, 3f);
 
-            var a = transform.eulerAngles + new Vector3(0, -90); // var = 프리팹 로테이션 값
-
+            GameObject feedbackEff = Instantiate(_feedbackPrefab);
+            feedbackEff.transform.position = hit.point;
+            feedbackEff.transform.rotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0, -90)); // var = 프리팹 로테이션 값
         }
-
-
-        
     }
 
     private void Update()
     {
-        Debug.DrawRay(_rayAnchor.transform.position, transform.forward * 10, Color.green);
+        Debug.DrawRay(_rayAnchor.transform.position, transform.forward * 2, Color.green);
     }
 
     IEnumerator MaterialValueEffect(float duration)
