@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class AttackFunc : MonoBehaviour
 {
@@ -20,6 +17,11 @@ public class AttackFunc : MonoBehaviour
     [SerializeField] private Color _endColor;
 
     [SerializeField] private GameObject _feedbackPrefab;
+
+    [SerializeField] [Range(0f, 10f)] private float _atkRange;
+    [SerializeField] [Range(0, 359f)] private float _atkAngle;
+
+    float _currentCombo;
     private void Awake()
     {
         _material = new MaterialPropertyBlock();
@@ -30,12 +32,6 @@ public class AttackFunc : MonoBehaviour
         _effectLight.enabled = false;
     }
 
-    //private void Start()
-    //{
-    //    _startColor = _material.GetColor("_StartColor");
-    //    _endColor = _material.GetColor("_EndColor");
-    //}
-
     public void OnAttack(float time)
     {
         _trai.enabled = true;
@@ -43,30 +39,35 @@ public class AttackFunc : MonoBehaviour
         StartCoroutine(MaterialValueEffect(time));
     }
 
-    
-
     public void Attack()
     {
-        Ray ray = new Ray(_rayAnchor.transform.position, transform.forward);
-        RaycastHit hit;
+        Collider[] hitColliders = Physics.OverlapSphere(_rayAnchor.transform.position, _atkRange);
 
-        if (Physics.Raycast(ray, out hit, 2, _layerMask, QueryTriggerInteraction.Ignore))
+        for(int i = 0; i < hitColliders.Length; i++)
         {
-            TimeController.Instance.ModifyTimeScale(0.2f, 0.1f, () =>
+            if(hitColliders[i].gameObject.CompareTag("Enemy"))
             {
-                TimeController.Instance.ModifyTimeScale(1, 0.02f, null);
-                Time.timeScale = 1;
-            });
-            GameManager.Instance.ShakeScreen(0.1f, 3f);
 
-            GameObject feedbackEff = Instantiate(_feedbackPrefab);
-            feedbackEff.transform.position = hit.point;
+
+
+                TimeController.Instance.ModifyTimeScale(0.2f, 0.1f, () =>
+                {
+                    TimeController.Instance.ModifyTimeScale(1, 0.02f, null);
+                    Time.timeScale = 1;
+                });
+                GameManager.Instance.ShakeScreen(0.1f, 3f);
+
+                GameObject feedbackEff = Instantiate(_feedbackPrefab);
+                feedbackEff.transform.position = hitColliders[i].gameObject.transform.position;
+            }
         }
     }
 
-    private void Update()
+
+    private void OnDrawGizmos()
     {
-        Debug.DrawRay(_rayAnchor.transform.position, transform.forward * 2, Color.green);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(_rayAnchor.transform.position, _atkRange);
     }
 
     IEnumerator MaterialValueEffect(float duration)
