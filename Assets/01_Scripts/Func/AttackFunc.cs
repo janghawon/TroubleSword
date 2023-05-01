@@ -1,15 +1,15 @@
 using System.Collections;
 using UnityEngine;
+using UnityEditor;
 
 public class AttackFunc : MonoBehaviour
 {
     TrailRenderer _trai;
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private GameObject _effectPos;
-    [SerializeField] private GameObject _rayAnchor;
+    [SerializeField] private GameObject _player;
     private MaterialPropertyBlock _material;
     private readonly int _isValueHash = Shader.PropertyToID("_value");
-    private readonly int _isAlphaHash = Shader.PropertyToID("_alpha");
 
     Light _effectLight;
 
@@ -20,8 +20,6 @@ public class AttackFunc : MonoBehaviour
 
     [SerializeField] [Range(0f, 10f)] private float _atkRange;
     [SerializeField] [Range(0, 359f)] private float _atkAngle;
-
-    float _currentCombo;
     private void Awake()
     {
         _material = new MaterialPropertyBlock();
@@ -41,24 +39,26 @@ public class AttackFunc : MonoBehaviour
 
     public void Attack()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(_rayAnchor.transform.position, _atkRange);
+        Collider[] hitColliders = Physics.OverlapSphere(_player.transform.position, _atkRange);
 
-        for(int i = 0; i < hitColliders.Length; i++)
+        for (int i = 0; i < hitColliders.Length; i++)
         {
-            if(hitColliders[i].gameObject.CompareTag("Enemy"))
+            if (hitColliders[i].gameObject.CompareTag("Enemy"))
             {
+                Transform target = hitColliders[i].transform;
+                Vector3 dirtoTarget = (target.position - _player.transform.position).normalized;
 
-
-
-                TimeController.Instance.ModifyTimeScale(0.2f, 0.1f, () =>
+                if (Vector3.Angle(_player.transform.forward, dirtoTarget) < _atkAngle / 2)
                 {
-                    TimeController.Instance.ModifyTimeScale(1, 0.02f, null);
-                    Time.timeScale = 1;
-                });
-                GameManager.Instance.ShakeScreen(0.1f, 3f);
+                    GameObject feedbackEff = Instantiate(_feedbackPrefab);
+                    feedbackEff.transform.position = hitColliders[i].gameObject.transform.position;
 
-                GameObject feedbackEff = Instantiate(_feedbackPrefab);
-                feedbackEff.transform.position = hitColliders[i].gameObject.transform.position;
+                    TimeController.Instance.ModifyTimeScale(0.2f, 0.1f, () =>
+                    {
+                        TimeController.Instance.ModifyTimeScale(1, 0.02f, null);
+                    });
+                    GameManager.Instance.ShakeScreen(0.1f, 3f);
+                }
             }
         }
     }
@@ -67,7 +67,11 @@ public class AttackFunc : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(_rayAnchor.transform.position, _atkRange);
+        Gizmos.DrawWireSphere(_player.transform.position, _atkRange);
+
+        Handles.color = Color.red;
+        Handles.DrawSolidArc(_player.transform.position, Vector3.up, transform.forward, _atkAngle / 2, _atkRange);
+        Handles.DrawSolidArc(_player.transform.position, Vector3.up, transform.forward, -_atkAngle / 2, _atkRange);
     }
 
     IEnumerator MaterialValueEffect(float duration)
