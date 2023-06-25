@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class DimensionSkillFunc : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject _dimenBulletPrefab;
 
-    // Update is called once per frame
-    void Update()
+    public void ShootSkill()
     {
-        
+        Debug.Log(this.transform.forward);
     }
 }

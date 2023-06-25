@@ -13,11 +13,13 @@ public class FuncAnimator : MonoBehaviour
     private readonly int _atkHash = Animator.StringToHash("atkCombo");
     private readonly int _atkBooleanHash = Animator.StringToHash("isAtk");
     private readonly int _dashHash = Animator.StringToHash("canDash");
+    private readonly int _dimenHash = Animator.StringToHash("isDiSkill");
 
     private int comboCount;
     private bool canAtk;
     private float _waitTime;
     private bool canDash;
+    private bool canDimen;
     public UnityEvent _dashEndEvent = null;
     public UnityEvent<float, int> _atkStartEvent = null;
     [SerializeField] private List<AnimationClip> _aniClips = new List<AnimationClip>();
@@ -32,6 +34,7 @@ public class FuncAnimator : MonoBehaviour
     {
         canAtk = true;
         canDash = true;
+        canDimen = true;
     }
 
     public void SetMoveAnim(Vector3 value)
@@ -66,6 +69,30 @@ public class FuncAnimator : MonoBehaviour
         }
     }
 
+    public void DimenAnim()
+    {
+        if(canDimen)
+        {
+            canDimen = false;
+            canAtk = false;
+            _moveFunc.canMove = false;
+            _animator.SetFloat(_moveHash, 0);
+            _animator.SetBool(_dimenHash, true);
+            StartCoroutine(DimenTimer());
+        }
+    }
+
+    IEnumerator DimenTimer()
+    {
+        _sKillCoolCounter.DimensionSkillCool(_aniClips[4].length - 0.1f + 2);
+        yield return new WaitForSeconds(_aniClips[4].length - 0.1f);
+        _moveFunc.canMove = true;
+        _animator.SetBool(_dimenHash, false);
+        canAtk = true;
+        yield return new WaitForSeconds(2);
+        canDimen = true;
+    }
+
     public void DashAnim()
     {
         if(canDash)
@@ -78,7 +105,6 @@ public class FuncAnimator : MonoBehaviour
             StartCoroutine(DashTimer());
         }
     }
-
 
     IEnumerator DashTimer()
     {
