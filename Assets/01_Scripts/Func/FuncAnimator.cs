@@ -51,7 +51,7 @@ public class FuncAnimator : MonoBehaviour
             _animator.SetBool(_atkBooleanHash, true);
 
             _waitTime = AttackDuration();
-            _sKillCoolCounter.StartSkillCool(_waitTime + 0.1f, comboCount);
+            _sKillCoolCounter.StartAttackCool(_waitTime + 0.1f, comboCount);
             if (comboCount == 2)
             {
                 comboCount = 0;
@@ -82,13 +82,13 @@ public class FuncAnimator : MonoBehaviour
 
     IEnumerator DashTimer()
     {
+        _sKillCoolCounter.DashAttackCool(_aniClips[3].length - 0.1f + 3);
         yield return new WaitForSeconds(_aniClips[3].length-0.1f);
         _animator.SetBool(_dashHash, false);
         _dashEndEvent?.Invoke();
         canAtk = true;
         yield return new WaitForSeconds(3);
         canDash = true;
-        
     }
 
     IEnumerator ComboTimer()

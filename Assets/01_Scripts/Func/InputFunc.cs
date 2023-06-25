@@ -10,6 +10,7 @@ public class InputFunc : MonoBehaviour
     public UnityEvent<Vector3> OnMoveKeyPress = null;
     public UnityEvent OnAttackPress = null;
     public UnityEvent<Vector3> OnDashPress = null;
+    public UnityEvent OnDimensionPress = null;
 
     void UpdateMoveInput()
     {
@@ -37,10 +38,19 @@ public class InputFunc : MonoBehaviour
         }
     }
 
+    void UpdateDimenInput()
+    {
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            OnDimensionPress?.Invoke();
+        }
+    }
+
     void Update()
     {
         UpdateMoveInput();
         UpdateAttackInput();
         UpdateDashInput();
+        UpdateDimenInput();
     }
 }

@@ -85,8 +85,6 @@ public class DashFunc : MonoBehaviour
             out hit, transform.rotation, 7);
         if (ishitDis)
         {
-            Debug.Log(hit.collider.gameObject.name);
-
             GameObject feedbackEff = Instantiate(_feedbackPrefab);
             feedbackEff.transform.position = hit.point;
         }

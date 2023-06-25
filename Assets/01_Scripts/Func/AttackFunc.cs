@@ -40,7 +40,7 @@ public class AttackFunc : MonoBehaviour
                 break;
             case 2:
                 _atkRange = 2.15f;
-                _atkAngle = 70f;
+                _atkAngle = 75f;
                 break;
             case 0:
                 _atkRange = 1.2f;
@@ -57,10 +57,7 @@ public class AttackFunc : MonoBehaviour
 
     public void Attack(int count)
     {
-        
-
         Collider[] hitColliders = Physics.OverlapSphere(_player.transform.position, _atkRange);
-
         for (int i = 0; i < hitColliders.Length; i++)
         {
             if (hitColliders[i].gameObject.CompareTag("Enemy"))
@@ -68,7 +65,7 @@ public class AttackFunc : MonoBehaviour
                 Transform target = hitColliders[i].transform;
                 Vector3 dirtoTarget = (target.position - _player.transform.position).normalized;
 
-                if (Vector3.Angle(_player.transform.forward, dirtoTarget) < _atkAngle / 2)
+                if (Vector3.Angle(_player.transform.forward, dirtoTarget) < _atkAngle )
                 {
                     GameObject feedbackEff = Instantiate(_feedbackPrefab);
                     feedbackEff.transform.position = hitColliders[i].gameObject.transform.position;

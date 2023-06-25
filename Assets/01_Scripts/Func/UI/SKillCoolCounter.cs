@@ -6,56 +6,65 @@ using UnityEngine.UI;
 
 public class SKillCoolCounter : MonoBehaviour
 {
-    private Image _outLine;
-    private Image _filter;
-    private Image _skillProfile;
+    [SerializeField] private Image[] _outLine;
+    [SerializeField] private Image[] _filter;
+    [SerializeField] private Image[] _skillProfile;
     [SerializeField] private List<Sprite> _imageList = new List<Sprite>();
-    private void Awake()
-    {
-        _outLine = GameObject.Find("SkillOutLine").GetComponent<Image>();
-        _filter = GameObject.Find("Filter").GetComponent<Image>();
-        _skillProfile = GameObject.Find("SkillProfile").GetComponent<Image>();
-    }
 
     private void Start()
     {
-        _outLine.fillAmount = 1f;
-        _filter.fillAmount = 0f;
+        for(int i = 0; i < _skillProfile.Length; i++)
+        {
+            _outLine[i].fillAmount = 1f;
+            _filter[i].fillAmount = 0f;
+        }
     }
 
-    public void StartSkillCool(float time, int combo)
+    public void StartAttackCool(float time, int combo)
     {
-        _skillProfile.sprite = _imageList[combo];
-        StartCoroutine(SkillCoolLineCounting(time));
-        StartCoroutine(SkillCoolFilterCounting(time));
+        _skillProfile[0].sprite = _imageList[combo];
+        StartCoroutine(AttackCoolLineCounting(time, 0));
+        StartCoroutine(AttackCoolFilterCounting(time, 0));
     }
 
-    IEnumerator SkillCoolLineCounting(float time)
+    public void DashAttackCool(float time)
+    {
+        StartCoroutine(AttackCoolLineCounting(time, 1));
+        StartCoroutine(AttackCoolFilterCounting(time, 1));
+    }
+
+    public void DimensionSkillCool(float time)
+    {
+        StartCoroutine(AttackCoolLineCounting(time, 2));
+        StartCoroutine(AttackCoolFilterCounting(time, 2));
+    }
+
+    IEnumerator AttackCoolLineCounting(float time, int num)
     {
         float elaspedTime = 0;
         while(elaspedTime < time)
         {
             float fillAmount = Mathf.Lerp(0f, 1f, elaspedTime / time);
-            _outLine.fillAmount = fillAmount;
+            _outLine[num].fillAmount = fillAmount;
             elaspedTime += Time.deltaTime;
             yield return null;
         }
 
-        _outLine.fillAmount = 1;
+        _outLine[num].fillAmount = 1;
     }
 
-    IEnumerator SkillCoolFilterCounting(float time)
+    IEnumerator AttackCoolFilterCounting(float time, int num)
     {
         float elaspedTime = 0;
-        _filter.fillAmount = 1;
+        _filter[num].fillAmount = 1;
         while (elaspedTime < time)
         {
             float fillAmount = Mathf.Lerp(1f, 0f, elaspedTime / time);
-            _filter.fillAmount = fillAmount;
+            _filter[num].fillAmount = fillAmount;
             elaspedTime += Time.deltaTime;
             yield return null;
         }
 
-        _filter.fillAmount = 0;
+        _filter[num].fillAmount = 0;
     }
 }
