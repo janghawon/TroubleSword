@@ -19,8 +19,7 @@ public class FuncAnimator : MonoBehaviour
     private float _waitTime;
     private bool canDash;
     public UnityEvent _dashEndEvent = null;
-    public UnityEvent<float> _atkStartEvent = null;
-    public UnityEvent<float> _atkEndEvent = null;
+    public UnityEvent<float, int> _atkStartEvent = null;
     [SerializeField] private List<AnimationClip> _aniClips = new List<AnimationClip>();
     private void Awake()
     {
@@ -62,7 +61,7 @@ public class FuncAnimator : MonoBehaviour
                 comboCount++;
             }
 
-            _atkStartEvent?.Invoke(_waitTime);
+            _atkStartEvent?.Invoke(_waitTime, comboCount);
             StartCoroutine(ComboTimer());
         }
     }
@@ -96,7 +95,6 @@ public class FuncAnimator : MonoBehaviour
     {
         yield return new WaitForSeconds(_waitTime + 0.1f);
         _animator.SetBool(_atkBooleanHash, false);
-        _atkEndEvent?.Invoke(_waitTime );
         canAtk = true;
         canDash = true;
         _moveFunc.canMove = true;   

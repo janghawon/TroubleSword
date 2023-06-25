@@ -30,15 +30,35 @@ public class AttackFunc : MonoBehaviour
         _effectLight.enabled = false;
     }
 
-    public void OnAttack(float time)
+    public void OnAttack(float time, int count)
     {
+        switch (count)
+        {
+            case 1:
+                _atkRange = 1.4f;
+                _atkAngle = 92f;
+                break;
+            case 2:
+                _atkRange = 2.15f;
+                _atkAngle = 70f;
+                break;
+            case 0:
+                _atkRange = 1.2f;
+                _atkAngle = 82f;
+                break;
+            default:
+                break;
+        }
+
         _trai.enabled = true;
         _effectLight.enabled = true;
         StartCoroutine(MaterialValueEffect(time));
     }
 
-    public void Attack()
+    public void Attack(int count)
     {
+        
+
         Collider[] hitColliders = Physics.OverlapSphere(_player.transform.position, _atkRange);
 
         for (int i = 0; i < hitColliders.Length; i++)
