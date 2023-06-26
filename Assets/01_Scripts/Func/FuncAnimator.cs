@@ -14,6 +14,7 @@ public class FuncAnimator : MonoBehaviour
     private readonly int _atkBooleanHash = Animator.StringToHash("isAtk");
     private readonly int _dashHash = Animator.StringToHash("canDash");
     private readonly int _dimenHash = Animator.StringToHash("isDiSkill");
+    private readonly int _rollHash = Animator.StringToHash("isRoll");
 
     private int comboCount;
     private bool canAtk;
@@ -35,6 +36,21 @@ public class FuncAnimator : MonoBehaviour
         canAtk = true;
         canDash = true;
         canDimen = true;
+    }
+
+    public void Roll()
+    {
+        _moveFunc.canMove = false;
+        _animator.SetFloat(_moveHash, 0);
+        StartCoroutine(RollCo());
+    }
+
+    IEnumerator RollCo()
+    {
+        _animator.SetBool(_rollHash, true);
+        yield return new WaitForSeconds(_aniClips[5].length + 0.1f);
+        _animator.SetBool(_rollHash, false);
+        _moveFunc.canMove = true;
     }
 
     public void SetMoveAnim(Vector3 value)
