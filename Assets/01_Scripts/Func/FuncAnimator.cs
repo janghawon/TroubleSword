@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class FuncAnimator : MonoBehaviour
 {
+    GameObject Visual;
     MovementFunc _moveFunc;
     SKillCoolCounter _sKillCoolCounter;
     private Animator _animator;
@@ -26,6 +27,7 @@ public class FuncAnimator : MonoBehaviour
     [SerializeField] private List<AnimationClip> _aniClips = new List<AnimationClip>();
     private void Awake()
     {
+        Visual = transform.Find("Visual").gameObject;
         _animator = transform.Find("Visual").GetComponent<Animator>();
         _sKillCoolCounter = GameObject.Find("SkillSorting").GetComponent<SKillCoolCounter>();
         _moveFunc = GetComponent<MovementFunc>();
@@ -42,6 +44,7 @@ public class FuncAnimator : MonoBehaviour
     {
         _moveFunc.canMove = false;
         _animator.SetFloat(_moveHash, 0);
+        _animator.applyRootMotion = true;
         StartCoroutine(RollCo());
     }
 
@@ -50,6 +53,9 @@ public class FuncAnimator : MonoBehaviour
         _animator.SetBool(_rollHash, true);
         yield return new WaitForSeconds(_aniClips[5].length + 0.1f);
         _animator.SetBool(_rollHash, false);
+        Visual.transform.localPosition = Vector3.zero;
+        Visual.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        _animator.applyRootMotion = false;
         _moveFunc.canMove = true;
     }
 

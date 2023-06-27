@@ -8,6 +8,12 @@ public class DimensionSkillFunc : MonoBehaviour
 
     public void ShootSkill()
     {
-        Debug.Log(this.transform.forward);
+        GameObject bullet = Instantiate(_dimenBulletPrefab);
+        bullet.transform.position = this.transform.position;
+        bullet.transform.position += new Vector3(0, 1, 0);
+        BulletFunc bf = bullet.GetComponent<BulletFunc>();
+
+        bullet.transform.rotation = this.transform.rotation;
+        bf.canfire = true;
     }
 }
