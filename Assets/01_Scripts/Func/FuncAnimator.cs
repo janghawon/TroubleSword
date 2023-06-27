@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class FuncAnimator : MonoBehaviour
 {
+    bool isCal;
+    CharacterController _cc;
     GameObject Visual;
     MovementFunc _moveFunc;
     SKillCoolCounter _sKillCoolCounter;
@@ -15,6 +17,7 @@ public class FuncAnimator : MonoBehaviour
     private readonly int _atkBooleanHash = Animator.StringToHash("isAtk");
     private readonly int _dashHash = Animator.StringToHash("canDash");
     private readonly int _dimenHash = Animator.StringToHash("isDiSkill");
+    private readonly int _jumpHash = Animator.StringToHash("isJump");
     private readonly int _rollHash = Animator.StringToHash("isRoll");
 
     private int comboCount;
@@ -27,6 +30,7 @@ public class FuncAnimator : MonoBehaviour
     [SerializeField] private List<AnimationClip> _aniClips = new List<AnimationClip>();
     private void Awake()
     {
+        _cc = GetComponent<CharacterController>();
         Visual = transform.Find("Visual").gameObject;
         _animator = transform.Find("Visual").GetComponent<Animator>();
         _sKillCoolCounter = GameObject.Find("SkillSorting").GetComponent<SKillCoolCounter>();
@@ -40,23 +44,49 @@ public class FuncAnimator : MonoBehaviour
         canDimen = true;
     }
 
-    public void Roll()
+    public void PortalRoll()
     {
-        _moveFunc.canMove = false;
-        _animator.SetFloat(_moveHash, 0);
-        _animator.applyRootMotion = true;
         StartCoroutine(RollCo());
     }
 
     IEnumerator RollCo()
     {
         _animator.SetBool(_rollHash, true);
-        yield return new WaitForSeconds(_aniClips[5].length + 0.1f);
+        _cc.enabled = true;
+        isCal = true;
+        yield return new WaitForSeconds(_aniClips[6].length + 0.1f);
+        isCal = false;
+        _moveFunc.canMove = true;
         _animator.SetBool(_rollHash, false);
+    }
+
+    private void FixedUpdate()
+    {
+        if (isCal)
+        {
+            Vector3 movementDir = Vector3.forward * 5 * Time.fixedDeltaTime;
+            movementDir.y = Physics.gravity.y * Time.fixedDeltaTime;
+            _cc.Move(movementDir);
+        }
+    }
+
+    public void PortalJump()
+    {
+        _moveFunc.canMove = false;
+        _animator.SetFloat(_moveHash, 0);
+        _animator.applyRootMotion = true;
+        StartCoroutine(JumpCo());
+    }
+
+    IEnumerator JumpCo()
+    {
+        _animator.SetBool(_jumpHash, true);
+        yield return new WaitForSeconds(_aniClips[5].length + 0.1f);
+
+        _animator.SetBool(_jumpHash, false);
         Visual.transform.localPosition = Vector3.zero;
         Visual.transform.localRotation = Quaternion.Euler(0, 0, 0);
         _animator.applyRootMotion = false;
-        _moveFunc.canMove = true;
     }
 
     public void SetMoveAnim(Vector3 value)
