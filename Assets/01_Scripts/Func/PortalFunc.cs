@@ -54,6 +54,7 @@ public class PortalFunc : MonoBehaviour
         _player.transform.position = LinkPortal.transform.position + new Vector3(0, -0.7f, 0);
         Vector3 dir = new Vector3(0 -_player.transform.rotation.y, 0);
         _player.transform.rotation = Quaternion.LookRotation(dir);
+        yield return new WaitForSeconds(0.1f);
         _fa.PortalRoll();
     }
 

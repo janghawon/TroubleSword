@@ -64,7 +64,7 @@ public class FuncAnimator : MonoBehaviour
     {
         if (isCal)
         {
-            Vector3 movementDir = Vector3.forward * 5 * Time.fixedDeltaTime;
+            Vector3 movementDir = Vector3.right * 2 * Time.fixedDeltaTime;
             movementDir.y = Physics.gravity.y * Time.fixedDeltaTime;
             _cc.Move(movementDir);
         }
