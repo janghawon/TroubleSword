@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class FuncAnimator : MonoBehaviour
 {
+    Vector3 rolldir;
+    public Direction AfterDirection;
     bool isCal;
     CharacterController _cc;
     GameObject Visual;
@@ -44,13 +46,16 @@ public class FuncAnimator : MonoBehaviour
         canDimen = true;
     }
 
-    public void PortalRoll()
+    public void PortalRoll(PortalFunc pf)
     {
+        AfterDirection = pf.thisDirection;
+        Debug.Log(AfterDirection);
         StartCoroutine(RollCo());
     }
 
     IEnumerator RollCo()
     {
+        rolldir = SetDir();
         _animator.SetBool(_rollHash, true);
         _cc.enabled = true;
         isCal = true;
@@ -61,11 +66,36 @@ public class FuncAnimator : MonoBehaviour
         PortalManager.Instance.cvcam.Follow = this.gameObject.transform;
     }
 
+    Vector3 SetDir()
+    {
+        Vector3 dir;
+        switch(AfterDirection)
+        {
+            case Direction.front:
+                dir = Vector3.back;
+                break;
+            case Direction.back:
+                dir = Vector3.forward;
+                break;
+            case Direction.right:
+                dir = Vector3.left;
+                break;
+            case Direction.left:
+                dir = Vector3.right;
+                break;
+            default:
+                dir = Vector3.zero;
+                break;
+        }
+
+        return dir;
+    }
+
     private void FixedUpdate()
     {
         if (isCal)
         {
-            Vector3 movementDir = Vector3.right * 2 * Time.fixedDeltaTime;
+            Vector3 movementDir = rolldir * 2 * Time.fixedDeltaTime;
             movementDir.y = Physics.gravity.y * Time.fixedDeltaTime;
             _cc.Move(movementDir);
         }

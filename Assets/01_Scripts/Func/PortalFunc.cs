@@ -3,8 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+public enum Direction
+{
+    front,
+    back,
+    right, 
+    left
+}
+
 public class PortalFunc : MonoBehaviour
 {
+    public Direction thisDirection;
     MovementFunc _moveFunc;
     public PortalFunc LinkPortal;
     public bool canTeleport;
@@ -54,15 +63,14 @@ public class PortalFunc : MonoBehaviour
         yield return new WaitForSeconds(0.63f);
         _player.transform.position = LinkPortal.transform.position + new Vector3(0, -0.7f, 0);
         Vector3 dir = new Vector3(0 -_player.transform.rotation.y, 0);
-        Debug.Log(dir);
         if(dir.x < 0)
         {
             dir.x = -dir.x;
         }
-        Debug.Log(dir);
         _player.transform.rotation = Quaternion.LookRotation(dir);
+        PortalManager.Instance.cvcam.Follow = _player.transform;
         yield return new WaitForSeconds(0.1f);
-        _fa.PortalRoll();
+        _fa.PortalRoll(LinkPortal);
     }
 
     private void Update()
