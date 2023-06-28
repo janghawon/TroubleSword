@@ -47,12 +47,19 @@ public class PortalFunc : MonoBehaviour
         }
     }
 
+
     IEnumerator Teleport()
     {
         _moveFunc.canMove = false;
         yield return new WaitForSeconds(0.63f);
         _player.transform.position = LinkPortal.transform.position + new Vector3(0, -0.7f, 0);
         Vector3 dir = new Vector3(0 -_player.transform.rotation.y, 0);
+        Debug.Log(dir);
+        if(dir.x < 0)
+        {
+            dir.x = -dir.x;
+        }
+        Debug.Log(dir);
         _player.transform.rotation = Quaternion.LookRotation(dir);
         yield return new WaitForSeconds(0.1f);
         _fa.PortalRoll();

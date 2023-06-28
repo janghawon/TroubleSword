@@ -58,6 +58,7 @@ public class FuncAnimator : MonoBehaviour
         isCal = false;
         _moveFunc.canMove = true;
         _animator.SetBool(_rollHash, false);
+        PortalManager.Instance.cvcam.Follow = this.gameObject.transform;
     }
 
     private void FixedUpdate()
@@ -72,6 +73,7 @@ public class FuncAnimator : MonoBehaviour
 
     public void PortalJump()
     {
+        PortalManager.Instance.cvcam.Follow = null;
         _moveFunc.canMove = false;
         _animator.SetFloat(_moveHash, 0);
         _animator.applyRootMotion = true;
