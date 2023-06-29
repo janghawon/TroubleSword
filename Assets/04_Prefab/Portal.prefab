@@ -45,8 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3e9283e9107a4489cfe443d2dd5be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisDirection: 0
   LinkPortal: {fileID: 0}
-  canTeleport: 1
+  canTeleport: 0
   _distance: 0.5
 --- !u!1001 &3243709890250635781
 PrefabInstance:

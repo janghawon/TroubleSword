@@ -26,7 +26,7 @@ public class FuncAnimator : MonoBehaviour
     private bool canAtk;
     private float _waitTime;
     private bool canDash;
-    private bool canDimen;
+    public bool canDimen;
     public UnityEvent _dashEndEvent = null;
     public UnityEvent<float, int> _atkStartEvent = null;
     [SerializeField] private List<AnimationClip> _aniClips = new List<AnimationClip>();

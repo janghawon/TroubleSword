@@ -40,13 +40,21 @@ public class PortalFunc : MonoBehaviour
         }
 
         PortalManager.Instance.CurrentPortal = this;
-        canTeleport = true;
+        
+        if(LinkPortal != null)
+        {
+            Debug.Log(LinkPortal);
+            canTeleport = true;
+            LinkPortal.canTeleport = true;
+        }
     }
 
     private void CheckDistance()
     {
-        if(Vector3.Distance(transform.position, _player.transform.position) < _distance)
+        if(Vector3.Distance(transform.position, _player.transform.position) < _distance && canTeleport)
         {
+            canTeleport = false;
+            LinkPortal.canTeleport = false;
             Vector3 dir = (transform.position - _player.transform.position).normalized;
             dir.y = -dir.y;
             _player.transform.DORotateQuaternion(Quaternion.LookRotation(dir), 0.5f);
@@ -57,6 +65,7 @@ public class PortalFunc : MonoBehaviour
 
     IEnumerator Teleport()
     {
+        StartCoroutine(TeleportCool());
         _moveFunc.canMove = false;
         yield return new WaitForSeconds(0.63f);
         _player.transform.position = LinkPortal.transform.position + new Vector3(0, -0.7f, 0);
@@ -66,6 +75,13 @@ public class PortalFunc : MonoBehaviour
         PortalManager.Instance.cvcam.Follow = _player.transform;
         yield return new WaitForSeconds(0.1f);
         _fa.PortalRoll(LinkPortal);
+    }
+
+    IEnumerator TeleportCool()
+    {
+        yield return new WaitForSeconds(2);
+        canTeleport = true;
+        LinkPortal.canTeleport = true;
     }
 
     void SetDir()
@@ -89,7 +105,6 @@ public class PortalFunc : MonoBehaviour
 
     private void Update()
     {
-        if(canTeleport && Input.GetKeyDown(KeyCode.Return))
-            CheckDistance();
+        CheckDistance();
     }
 }

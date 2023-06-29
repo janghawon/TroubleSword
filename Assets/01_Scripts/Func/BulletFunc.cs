@@ -20,9 +20,7 @@ public class BulletFunc : MonoBehaviour
     {
         GameObject portal = Instantiate(_portal.gameObject);
         portal.transform.position = this.transform.position + new Vector3(0, 0.5f, 0);
-
         SetDirection(portal);
-
         Destroy(this.gameObject);
     }
 
