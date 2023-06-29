@@ -49,7 +49,6 @@ public class FuncAnimator : MonoBehaviour
     public void PortalRoll(PortalFunc pf)
     {
         AfterDirection = pf.thisDirection;
-        Debug.Log(AfterDirection);
         StartCoroutine(RollCo());
     }
 

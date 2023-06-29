@@ -50,27 +50,41 @@ public class PortalFunc : MonoBehaviour
             Vector3 dir = (transform.position - _player.transform.position).normalized;
             dir.y = -dir.y;
             _player.transform.DORotateQuaternion(Quaternion.LookRotation(dir), 0.5f);
-
             _fa.PortalJump();
             StartCoroutine(Teleport());
         }
     }
-
 
     IEnumerator Teleport()
     {
         _moveFunc.canMove = false;
         yield return new WaitForSeconds(0.63f);
         _player.transform.position = LinkPortal.transform.position + new Vector3(0, -0.7f, 0);
-        Vector3 dir = new Vector3(0 -_player.transform.rotation.y, 0);
-        if(dir.x < 0)
-        {
-            dir.x = -dir.x;
-        }
-        _player.transform.rotation = Quaternion.LookRotation(dir);
+
+        SetDir();
+
         PortalManager.Instance.cvcam.Follow = _player.transform;
         yield return new WaitForSeconds(0.1f);
         _fa.PortalRoll(LinkPortal);
+    }
+
+    void SetDir()
+    {
+        switch(LinkPortal.thisDirection)
+        {
+            case Direction.front:
+                _player.transform.rotation = Quaternion.LookRotation(Vector3.back);
+                break;
+            case Direction.back:
+                _player.transform.rotation = Quaternion.LookRotation(Vector3.forward);
+                break;
+            case Direction.right:
+                _player.transform.rotation = Quaternion.LookRotation(Vector3.left);
+                break;
+            case Direction.left:
+                _player.transform.rotation = Quaternion.LookRotation(Vector3.right);
+                break;
+        }
     }
 
     private void Update()
