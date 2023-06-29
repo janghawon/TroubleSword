@@ -20,7 +20,7 @@ public class EnemyBrain : MonoBehaviour
     [SerializeField] private UnityEvent<EnemyState> EnemyAnimationSetter = null;
 
     [SerializeField] private UnityEvent EnemyIdleEvent;
-    [SerializeField] private UnityEvent EnemyTraceEvent;
+    [SerializeField] private UnityEvent<Vector3> EnemyTraceEvent;
     [SerializeField] private UnityEvent EnemyHitEvent;
     [SerializeField] private UnityEvent EnemyAttackEvent;
     [SerializeField] private UnityEvent EnemyDieEvent;
@@ -47,7 +47,7 @@ public class EnemyBrain : MonoBehaviour
 
     private void TraceState()
     {
-        EnemyTraceEvent?.Invoke();
+        EnemyTraceEvent?.Invoke(Player.transform.position);
         if (Vector3.Distance(Player.transform.position, this.transform.position) <= _enemySO.AttackRange)
         {
             EnemyCurrentState = EnemyState.attack;
