@@ -6,10 +6,10 @@ using UnityEngine.Events;
 public enum EnemyState
 {
     Idle,
-    hit,
-    attack,
-    trace,
-    die
+    Hit,
+    Attack,
+    Trace,
+    Die
 }
 
 public class EnemyBrain : MonoBehaviour
@@ -22,7 +22,8 @@ public class EnemyBrain : MonoBehaviour
     [SerializeField] private UnityEvent EnemyIdleEvent;
     [SerializeField] private UnityEvent<Vector3> EnemyTraceEvent;
     [SerializeField] private UnityEvent EnemyHitEvent;
-    [SerializeField] private UnityEvent EnemyAttackEvent;
+    [SerializeField] private UnityEvent EnemyAttackBefore;
+    [SerializeField] private UnityEvent<float> EnemyAttackEvent;
     [SerializeField] private UnityEvent EnemyDieEvent;
 
     private void Awake()
@@ -37,7 +38,8 @@ public class EnemyBrain : MonoBehaviour
 
     private void AttackState()
     {
-        EnemyAttackEvent?.Invoke();
+        EnemyAttackBefore?.Invoke();
+        EnemyAttackEvent?.Invoke(_enemySO.AttackValue);
     }
 
     private void HitState()
@@ -50,7 +52,7 @@ public class EnemyBrain : MonoBehaviour
         EnemyTraceEvent?.Invoke(Player.transform.position);
         if (Vector3.Distance(Player.transform.position, this.transform.position) <= _enemySO.AttackRange)
         {
-            EnemyCurrentState = EnemyState.attack;
+            EnemyCurrentState = EnemyState.Attack;
         }
     }
 
@@ -59,7 +61,7 @@ public class EnemyBrain : MonoBehaviour
         EnemyIdleEvent?.Invoke();
         if (Vector3.Distance(Player.transform.position, this.transform.position) <= _enemySO.DetectDistance)
         {
-            EnemyCurrentState = EnemyState.trace;
+            EnemyCurrentState = EnemyState.Trace;
         }
     }
 
@@ -70,16 +72,16 @@ public class EnemyBrain : MonoBehaviour
             case EnemyState.Idle:
                 IdleState();
                 break;
-            case EnemyState.trace:
+            case EnemyState.Trace:
                 TraceState();
                 break;
-            case EnemyState.hit:
+            case EnemyState.Hit:
                 HitState();
                 break;
-            case EnemyState.attack:
+            case EnemyState.Attack:
                 AttackState();
                 break;
-            case EnemyState.die:
+            case EnemyState.Die:
                 DieState();
                 break;
         }

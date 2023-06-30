@@ -13,8 +13,19 @@ public class EnemyAnimation : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
+    public void DieEvent()
+    {
+
+    }
+
     public void AnimationSet(EnemyState currentState)
     {
+        if(currentState == EnemyState.Die)
+        {
+            _animator.SetTrigger("isDie");
+            return;
+        }
+
         if(_currentState != currentState.ToString())
         {
             _animator.SetBool($"is{_currentState}", false);

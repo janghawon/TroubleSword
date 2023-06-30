@@ -14,6 +14,7 @@ public class EnemyTrace : MonoBehaviour
 
     public void EnemyMoveAction(Vector3 targetPos)
     {
+        _nav.enabled = true;
         _nav.SetDestination(targetPos);
     }
 }

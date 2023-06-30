@@ -35,15 +35,15 @@ public class AttackFunc : MonoBehaviour
         switch (count)
         {
             case 1:
-                _atkRange = 1.4f;
+                _atkRange = 1.8f;
                 _atkAngle = 92f;
                 break;
             case 2:
-                _atkRange = 2.15f;
+                _atkRange = 2.5f;
                 _atkAngle = 75f;
                 break;
             case 0:
-                _atkRange = 1.2f;
+                _atkRange = 1.7f;
                 _atkAngle = 82f;
                 break;
             default:
