@@ -15,6 +15,7 @@ public enum EnemyState
 public class EnemyBrain : MonoBehaviour
 {
     GameObject Player;
+    EnemyAttackChooser _enemyAttackChooser;
     public EnemyState EnemyCurrentState = EnemyState.Idle;
     [SerializeField] private EnemySO _enemySO;
     [SerializeField] private UnityEvent<EnemyState> EnemyAnimationSetter = null;
@@ -29,6 +30,12 @@ public class EnemyBrain : MonoBehaviour
     private void Awake()
     {
         Player = GameObject.Find("Player");
+        _enemyAttackChooser = GetComponent<EnemyAttackChooser>();
+    }
+
+    private void Start()
+    {
+        _enemyAttackChooser.SetBulletCount(_enemySO.bulletCount);
     }
 
     private void DieState()
