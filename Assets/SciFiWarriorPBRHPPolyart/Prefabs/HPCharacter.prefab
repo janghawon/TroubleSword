@@ -2138,7 +2138,13 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'Head'\n\tTransform 'Hips'\n\tTransform 'Chest'\n\tTransform
+    'Index_Proximal_Right'\n\tTransform 'Index_Distal_Left'\n\tTransform 'Hand_Right'\n\tTransform
+    'UpperLeg_Left'\n\tTransform 'Index_Intermediate_Left'\n\tTransform 'Thumb_Proximal_Left'\n\tTransform
+    'RestOfFingers_Proximal_Left'\n\tand more ...\n\tFrom animation clip 'Reload'\n\tFrom
+    animation clip 'Die'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -2292,6 +2298,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7533302744791341726}
+        m_TargetAssemblyTypeName: RobotEnemyAttackChooser, Assembly-CSharp
+        m_MethodName: AttackChoose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   EnemyAttackEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2310,8 +2328,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 946e8bdd1ac4a43489074d5bdc31b09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _controller: {fileID: 22100000, guid: 5a65826ed46363249adfbc1d7e47604b, type: 2}
   _atktypeCount: 0
-  grendadeAttackDistance: 0
+  grendadeAttackDistance: 3
 --- !u!1 &7673487251499248762
 GameObject:
   m_ObjectHideFlags: 0

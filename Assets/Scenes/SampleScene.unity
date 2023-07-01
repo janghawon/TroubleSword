@@ -2036,7 +2036,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4134eee6351f04eb6d28bde440def1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RobotEnemyClipList: []
+  RobotEnemyClipList:
+  - {fileID: 7400000, guid: 7248e3925e4acb04aa49f142e4c450c5, type: 2}
+  - {fileID: 7400000, guid: 029618e32122cfb40b5847315f8ae801, type: 2}
+  - {fileID: 7400000, guid: 7b31c61deafef714892b00ed0cef1ae1, type: 2}
+  - {fileID: 7400000, guid: fd8114e875a53c14fba4b69d5a2e20fe, type: 2}
+  - {fileID: 7400000, guid: df42deb62308b65408718f9d8f788848, type: 2}
+  - {fileID: 7400000, guid: 4261d9830757ea24b9be6ee679be3d4a, type: 2}
+  - {fileID: 7400000, guid: 4e3d3e1896fcfa941bc79bf661bf6dd0, type: 2}
+  - {fileID: 7400000, guid: c869d9646618134408d9b54f73abf3a1, type: 2}
 --- !u!4 &1403877203
 Transform:
   m_ObjectHideFlags: 0
@@ -2320,166 +2328,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711575506}
   m_CullTransparentMesh: 1
---- !u!1 &1741459312 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7673487251499248760, guid: c98043d57e0190845b790d7b92990bee, type: 3}
-  m_PrefabInstance: {fileID: 1879570361}
-  m_PrefabAsset: {fileID: 0}
---- !u!195 &1741459315
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741459312}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!136 &1741459316
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741459312}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.7
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &1741459317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741459312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe0b3974a2c14434fb6630685880f81e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1741459318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741459312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc0248ca5e14d594eaa9b46dd45dd485, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1741459319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741459312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68bd84e18edfe3f4da4646fd8132ab3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1741459320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741459312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 642fdb0e5b896a0458b60e54040ad300, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1741459321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741459312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b06f4efc390d91c4b847c7b203078e49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnemyCurrentState: 0
-  _enemySO: {fileID: 11400000, guid: 505fa4c044377b748b3059d490e7e805, type: 2}
-  EnemyAnimationSetter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1741459320}
-        m_TargetAssemblyTypeName: EnemyAnimation, Assembly-CSharp
-        m_MethodName: AnimationSet
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  EnemyIdleEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  EnemyTraceEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1741459318}
-        m_TargetAssemblyTypeName: EnemyTrace, Assembly-CSharp
-        m_MethodName: EnemyMoveAction
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  EnemyHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  EnemyAttackBefore:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1741459315}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  EnemyAttackEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  EnemyDieEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1765453881
 GameObject:
   m_ObjectHideFlags: 0
@@ -2880,10 +2728,6 @@ PrefabInstance:
     - target: {fileID: 7673487251499248760, guid: c98043d57e0190845b790d7b92990bee, type: 3}
       propertyPath: m_Name
       value: RobotEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 7673487251499248760, guid: c98043d57e0190845b790d7b92990bee, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7673487251499544664, guid: c98043d57e0190845b790d7b92990bee, type: 3}
       propertyPath: m_RootOrder
