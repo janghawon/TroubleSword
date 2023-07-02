@@ -2037,14 +2037,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RobotEnemyClipList:
-  - {fileID: 7400000, guid: 7248e3925e4acb04aa49f142e4c450c5, type: 2}
   - {fileID: 7400000, guid: 029618e32122cfb40b5847315f8ae801, type: 2}
-  - {fileID: 7400000, guid: 7b31c61deafef714892b00ed0cef1ae1, type: 2}
+  - {fileID: 7400000, guid: 7248e3925e4acb04aa49f142e4c450c5, type: 2}
+  - {fileID: 7400000, guid: d406f8f3cbe268f4e9d0234d45cca60c, type: 3}
   - {fileID: 7400000, guid: fd8114e875a53c14fba4b69d5a2e20fe, type: 2}
   - {fileID: 7400000, guid: df42deb62308b65408718f9d8f788848, type: 2}
   - {fileID: 7400000, guid: 4261d9830757ea24b9be6ee679be3d4a, type: 2}
   - {fileID: 7400000, guid: 4e3d3e1896fcfa941bc79bf661bf6dd0, type: 2}
-  - {fileID: 7400000, guid: c869d9646618134408d9b54f73abf3a1, type: 2}
+  - {fileID: 7400000, guid: 45b9c258f262e844e8f5316722fc04c6, type: 3}
 --- !u!4 &1403877203
 Transform:
   m_ObjectHideFlags: 0
