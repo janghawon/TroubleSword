@@ -35,7 +35,7 @@ public class EnemyBrain : MonoBehaviour
 
     private void Start()
     {
-        _enemyAttackChooser.SetBulletCount(_enemySO.bulletCount);
+        _enemyAttackChooser.SetBulletCount(_enemySO.bulletCount, _enemySO.AttackSpeedValue);
     }
 
     private void DieState()
