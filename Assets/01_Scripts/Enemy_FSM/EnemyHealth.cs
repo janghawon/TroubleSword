@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyHealth : MonoBehaviour
 {
+    EnemyBrain _eb;
     CapsuleCollider _col;
     NavMeshAgent _na;
     Animator _animator;
@@ -14,6 +15,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void Awake()
     {
+        _eb = GetComponent<EnemyBrain>();
         _col = GetComponent<CapsuleCollider>();
         _na = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
@@ -55,9 +57,13 @@ public class EnemyHealth : MonoBehaviour
 
     IEnumerator HitCo()
     {
-        yield return new WaitForSeconds(EnemyManager.Instance.RobotEnemyClipList[3].length * 0.7f + 0.1f);
+        _eb.EnemyCurrentState = EnemyState.Hit;
+        _animator.SetBool("isAttack", false);
+        _animator.SetBool("isReload", false);
+        yield return new WaitForSeconds(EnemyManager.Instance.RobotEnemyClipList[3].length);
         _animator.SetBool("isHit", false);
         _na.enabled = true;
         _aec.canAttack = true;
+        _eb.EnemyCurrentState = EnemyState.Idle;
     }
 }
