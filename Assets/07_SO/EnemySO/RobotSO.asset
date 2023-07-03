@@ -15,7 +15,7 @@ MonoBehaviour:
   bulletCount: 0
   EnemyName: "\uB85C\uBD07"
   AttackValue: 10
-  AttackSpeedValue: 0.5
+  AttackSpeedValue: 0.7
   AttackRange: 5
   DetectDistance: 7
   MoveSpeed: 10

@@ -14,28 +14,34 @@ public class RobotEnemyAttackChooser : EnemyAttackChooser
         _enemyGrenadeAttack = _enemyAttackBank.GetComponent<EnemyGrenadeAttack>();
     }
 
+    public void StartAttackCool()
+    {
+        StartCoroutine(AttackCoolCounter());
+    }
+
     IEnumerator AttackCoolCounter()
     {
-        canAttack = false;
         yield return new WaitForSeconds(_atkCool);
         canAttack = true;
     }
 
     public override void AttackChoose()
     {
-        
-        if(canAttack && Vector3.Distance(transform.position, Player.transform.position) < grendadeAttackDistance)
+        if(canAttack)
         {
-            _controller["Attack"] = EnemyManager.Instance.RobotEnemyClipList[0];
-            _enemyShootAttack.EulerEnemyToPlayer(Player.transform);
-            _enemyShootAttack.AttackEvent();
+            if (Vector3.Distance(transform.position, Player.transform.position) <= grendadeAttackDistance)
+            {
+                _controller["Attack"] = EnemyManager.Instance.RobotEnemyClipList[0];
+                _enemyShootAttack.EulerEnemyToPlayer(Player.transform);
+                _enemyShootAttack.AttackEvent();
+            }
+            else if (Vector3.Distance(transform.position, Player.transform.position) > grendadeAttackDistance)
+            {
+                _controller["Attack"] = EnemyManager.Instance.RobotEnemyClipList[1];
+                _enemyGrenadeAttack.EulerEnemyToPlayer(Player.transform);
+                _enemyGrenadeAttack.AttackEvent();
+            }
+            canAttack = false;
         }
-        else
-        {
-            _controller["Attack"] = EnemyManager.Instance.RobotEnemyClipList[1];
-            _enemyGrenadeAttack.EulerEnemyToPlayer(Player.transform);
-            _enemyGrenadeAttack.AttackEvent();
-        }
-        StartCoroutine(AttackCoolCounter());
     }
 }
