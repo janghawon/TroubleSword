@@ -29,6 +29,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void EnemyHitAction(float _damage)
     {
+        Debug.Log("ddd");
         _na.enabled = false;
         _aec.canAttack = false;
         _animator.SetBool("isHit", true);
@@ -50,17 +51,12 @@ public class EnemyHealth : MonoBehaviour
         _aec.canAttack = false;
     }
 
-    public void StopDie()
-    {
-        
-    }
-
     IEnumerator HitCo()
     {
         _eb.EnemyCurrentState = EnemyState.Hit;
         _animator.SetBool("isAttack", false);
         _animator.SetBool("isReload", false);
-        yield return new WaitForSeconds(EnemyManager.Instance.RobotEnemyClipList[3].length);
+        yield return new WaitForSeconds(EnemyManager.Instance.RobotEnemyClipList[3].length + 0.1f);
         _animator.SetBool("isHit", false);
         _na.enabled = true;
         _aec.canAttack = true;
