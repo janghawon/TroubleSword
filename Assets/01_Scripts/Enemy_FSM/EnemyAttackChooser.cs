@@ -12,7 +12,7 @@ public abstract class EnemyAttackChooser : MonoBehaviour
     protected int _currentBullet;
     protected int _maxBullet;
     protected float _atkCool;
-    protected bool canAttack;
+    public bool canAttack;
 
     public abstract void AttackChoose();
 

@@ -19,5 +19,5 @@ public abstract class EnemyAttack : MonoBehaviour
         thisParentEnemy.transform.DORotate(new Vector3(0, yRot, 0), 0.5f);
     }
 
-    public abstract void AttackEvent();
+    public abstract void AttackEvent(GameObject firePos);
 }

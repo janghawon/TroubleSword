@@ -10,7 +10,9 @@ public class RobotEnemyAttackChooser : EnemyAttackChooser
     EnemyShootAttack _enemyShootAttack;
     EnemyGrenadeAttack _enemyGrenadeAttack;
 
-    [SerializeField] bool isShoot;
+    [SerializeField] private GameObject _firePos;
+
+    bool isShoot;
 
     private void Start()
     {
@@ -37,13 +39,14 @@ public class RobotEnemyAttackChooser : EnemyAttackChooser
         {
             if (isShoot)
             {
+                _enemyShootAttack.AttackEvent(_firePos);
                 _currentBullet--;
             }
             else
             {
+                _enemyGrenadeAttack.AttackEvent(_firePos);
                 _currentBullet -= 5;
             }
-            Debug.Log(_currentBullet);
         }
         else
         {
@@ -64,19 +67,18 @@ public class RobotEnemyAttackChooser : EnemyAttackChooser
         if(canAttack)
         {
             _nv.enabled = false;
+            
             if (Vector3.Distance(transform.position, Player.transform.position) <= grendadeAttackDistance)
             {
                 isShoot = false;
                 _controller["Attack"] = EnemyManager.Instance.RobotEnemyClipList[0];
                 _enemyShootAttack.EulerEnemyToPlayer(Player.transform);
-                _enemyShootAttack.AttackEvent();
             }
             else if (Vector3.Distance(transform.position, Player.transform.position) > grendadeAttackDistance)
             {
                 isShoot = true;
                 _controller["Attack"] = EnemyManager.Instance.RobotEnemyClipList[1];
                 _enemyGrenadeAttack.EulerEnemyToPlayer(Player.transform);
-                _enemyGrenadeAttack.AttackEvent();
             }
             canAttack = false;
         }

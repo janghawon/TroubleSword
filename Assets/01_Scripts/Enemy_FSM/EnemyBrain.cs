@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class EnemyBrain : MonoBehaviour
 {
     GameObject Player;
     EnemyAttackChooser _enemyAttackChooser;
+    EnemyHealth _enemyHealth;
     public EnemyState EnemyCurrentState = EnemyState.Idle;
     [SerializeField] private EnemySO _enemySO;
     [SerializeField] private UnityEvent<EnemyState> EnemyAnimationSetter = null;
@@ -30,11 +32,13 @@ public class EnemyBrain : MonoBehaviour
     private void Awake()
     {
         Player = GameObject.Find("Player");
+        _enemyHealth = GetComponent<EnemyHealth>();
         _enemyAttackChooser = GetComponent<EnemyAttackChooser>();
     }
 
     private void Start()
     {
+        _enemyHealth.SetHP(_enemySO.EnemyHP);
         _enemyAttackChooser.SetBulletCount(_enemySO.bulletCount, _enemySO.AttackSpeedValue);
     }
 
@@ -106,5 +110,10 @@ public class EnemyBrain : MonoBehaviour
     private void Update()
     {
         StateAction();
+    }
+
+    public void HitDetect(float _damage)
+    {
+        EnemyCurrentState = EnemyState.Hit;
     }
 }

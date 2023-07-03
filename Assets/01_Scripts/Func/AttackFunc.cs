@@ -70,6 +70,9 @@ public class AttackFunc : MonoBehaviour
                     GameObject feedbackEff = Instantiate(_feedbackPrefab);
                     feedbackEff.transform.position = hitColliders[i].gameObject.transform.position;
 
+                    EnemyHealth eh = hitColliders[i].GetComponent<EnemyHealth>();
+                    eh.EnemyHitAction(10);
+
                     TimeController.Instance.ModifyTimeScale(0.2f, 0.1f, () =>
                     {
                         TimeController.Instance.ModifyTimeScale(1, 0.02f, null);
