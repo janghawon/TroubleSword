@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyHealth : MonoBehaviour
 {
+    CapsuleCollider _col;
     NavMeshAgent _na;
     Animator _animator;
     EnemyAttackChooser _aec;
@@ -13,6 +14,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void Awake()
     {
+        _col = GetComponent<CapsuleCollider>();
         _na = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         _aec = GetComponent<EnemyAttackChooser>();
@@ -31,15 +33,24 @@ public class EnemyHealth : MonoBehaviour
         currentHP -= _damage;
         if(currentHP <= 0)
         {
-            StartCoroutine(EnemyDieCo());
+            Die();
         }
         else
             StartCoroutine(HitCo());
     }
 
-    IEnumerator EnemyDieCo()
+    void Die()
     {
+        _animator.SetBool("isHit", false);
+        _animator.SetTrigger("isDie");
+        _col.enabled = false;
+        _na.enabled = false;
+        _aec.canAttack = false;
+    }
 
+    public void StopDie()
+    {
+        
     }
 
     IEnumerator HitCo()
