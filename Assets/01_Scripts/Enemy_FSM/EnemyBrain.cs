@@ -47,6 +47,10 @@ public class EnemyBrain : MonoBehaviour
     {
         EnemyAttackBefore?.Invoke();
         EnemyAttackEvent?.Invoke(_enemySO.AttackValue);
+        if (Vector3.Distance(Player.transform.position, this.transform.position) > _enemySO.AttackRange)
+        {
+            EnemyCurrentState = EnemyState.Trace;
+        }
     }
 
     private void HitState()
@@ -60,6 +64,10 @@ public class EnemyBrain : MonoBehaviour
         if (Vector3.Distance(Player.transform.position, this.transform.position) <= _enemySO.AttackRange)
         {
             EnemyCurrentState = EnemyState.Attack;
+        }
+        if (Vector3.Distance(Player.transform.position, this.transform.position) > _enemySO.DetectDistance)
+        {
+            EnemyCurrentState = EnemyState.Idle;
         }
     }
 

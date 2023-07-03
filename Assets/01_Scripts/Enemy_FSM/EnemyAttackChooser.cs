@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class EnemyAttackChooser : MonoBehaviour
 {
     protected GameObject Player;
+    protected Animator _animator;
     [SerializeField] protected AnimatorOverrideController _controller;
     protected GameObject _enemyAttackBank;
 
@@ -17,6 +18,7 @@ public abstract class EnemyAttackChooser : MonoBehaviour
 
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
         Player = GameObject.Find("Player");
         Debug.Log(_controller);
         _enemyAttackBank = transform.Find("AttackBank").gameObject;

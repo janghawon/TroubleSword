@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9496e132b3bc438792b92f3dc496b, type: 3}
   m_Name: RobotSO
   m_EditorClassIdentifier: 
-  bulletCount: 0
+  bulletCount: 30
   EnemyName: "\uB85C\uBD07"
   AttackValue: 10
   AttackSpeedValue: 0.7
-  AttackRange: 5
-  DetectDistance: 7
+  AttackRange: 6
+  DetectDistance: 8
   MoveSpeed: 10
   grogiTime: 1
