@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public abstract class EnemyAttack : MonoBehaviour
 {
-    GameObject thisParentEnemy;
+    protected GameObject thisParentEnemy;
 
     private void Awake()
     {

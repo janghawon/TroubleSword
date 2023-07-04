@@ -5,9 +5,19 @@ using UnityEngine;
 public class EnemyShootAttack : EnemyAttack
 {
     [SerializeField] private GameObject _fireEffect;
+    [SerializeField] private float _Edamage;
     public override void AttackEvent(GameObject firePos)
     {
-        GameObject effect = Instantiate(_fireEffect);
-        effect.transform.position = firePos.transform.position;
+        RaycastHit hit;
+        Debug.DrawRay(firePos.transform.position, transform.forward * 10, Color.green, 0.5f);
+        if (Physics.Raycast(firePos.transform.position, transform.forward, out hit, 10))
+        {
+            Debug.Log(hit.collider);
+            if (hit.collider.gameObject.TryGetComponent<HealthFunc>(out HealthFunc hf))
+            {
+                hf.DamageCalcculate(_Edamage);
+            }
+        }
     }
+
 }

@@ -20,17 +20,13 @@ public class HealthFunc : MonoBehaviour
         _hpBar.value = Mathf.Lerp(_hpBar.value, (float)_currentHP / (float)_maxHP, Time.deltaTime * 10);
     }
 
-    void SampleDamage()
+    public void DamageCalcculate(float damage)
     {
-        _currentHP -= 10;
+        _currentHP -= damage;
     }
 
     void Update()
     {
-        if(Input.GetButtonDown("Jump"))
-        {
-            SampleDamage();
-        }
         HpCalculate();
     }
 }
