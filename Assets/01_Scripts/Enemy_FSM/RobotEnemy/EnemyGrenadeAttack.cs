@@ -10,7 +10,8 @@ public class EnemyGrenadeAttack : EnemyAttack
     {
         GameObject effect = Instantiate(_fireEffect);
         effect.transform.position = firePos.transform.position;
-
-        thisParentEnemy.transform.DOMove(Vector3.back * 0.3f, 0.2f);
+        Vector3 dir = -thisParentEnemy.transform.forward;
+        thisParentEnemy.transform.DOMove(new Vector3(dir.x, thisParentEnemy.transform.position.y, dir.z), 0.3f);
+        Debug.Log(new Vector3(dir.x, thisParentEnemy.transform.position.y, dir.z));
     }
 }

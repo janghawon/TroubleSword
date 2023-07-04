@@ -53,7 +53,6 @@ public class EnemyHealth : MonoBehaviour
 
     IEnumerator HitCo()
     {
-        _eb.EnemyCurrentState = EnemyState.Hit;
         _animator.SetBool("isAttack", false);
         _animator.SetBool("isReload", false);
         yield return new WaitForSeconds(EnemyManager.Instance.RobotEnemyClipList[3].length + 0.1f);
