@@ -7,31 +7,32 @@ public class EnemyAnimation : MonoBehaviour
 {
     private Animator _animator;
     private string _currentState;
+    bool canAnimating;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-    }
-
-    public void DieEvent()
-    {
-
+        canAnimating = true;
     }
 
     public void AnimationSet(EnemyState currentState)
     {
-        if(currentState == EnemyState.Die)
+        if(canAnimating)
         {
-            _animator.SetTrigger("isDie");
-            return;
-        }
+            if (currentState == EnemyState.Die)
+            {
+                _animator.SetTrigger("isDie");
+                canAnimating = false;
+                return;
+            }
 
-        if(_currentState != currentState.ToString())
-        {
-            _animator.SetBool($"is{_currentState}", false);
-            _currentState = currentState.ToString();
-        }
+            if (_currentState != currentState.ToString())
+            {
+                _animator.SetBool($"is{_currentState}", false);
+                _currentState = currentState.ToString();
+            }
 
-        _animator.SetBool($"is{_currentState}", true);
+            _animator.SetBool($"is{_currentState}", true);
+        }
     }
 }

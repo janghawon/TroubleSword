@@ -19,6 +19,7 @@ public class EnemyBrain : MonoBehaviour
     EnemyAttackChooser _enemyAttackChooser;
     EnemyHealth _enemyHealth;
     public EnemyState EnemyCurrentState = EnemyState.Idle;
+    public bool isDie;
     [SerializeField] private EnemySO _enemySO;
     [SerializeField] private UnityEvent<EnemyState> EnemyAnimationSetter = null;
 
@@ -64,21 +65,24 @@ public class EnemyBrain : MonoBehaviour
 
     private void TraceState()
     {
-        EnemyTraceEvent?.Invoke(Player.transform.position);
-        if (Vector3.Distance(Player.transform.position, this.transform.position) <= _enemySO.AttackRange)
+        if(!isDie)
         {
-            EnemyCurrentState = EnemyState.Attack;
-        }
-        if (Vector3.Distance(Player.transform.position, this.transform.position) > _enemySO.DetectDistance)
-        {
-            EnemyCurrentState = EnemyState.Idle;
+            EnemyTraceEvent?.Invoke(Player.transform.position);
+            if (Vector3.Distance(Player.transform.position, this.transform.position) <= _enemySO.AttackRange)
+            {
+                EnemyCurrentState = EnemyState.Attack;
+            }
+            if (Vector3.Distance(Player.transform.position, this.transform.position) > _enemySO.DetectDistance)
+            {
+                EnemyCurrentState = EnemyState.Idle;
+            }
         }
     }
 
     private void IdleState()
     {
         EnemyIdleEvent?.Invoke();
-        if (Vector3.Distance(Player.transform.position, this.transform.position) <= _enemySO.DetectDistance)
+        if (!isDie && Vector3.Distance(Player.transform.position, this.transform.position) <= _enemySO.DetectDistance)
         {
             EnemyCurrentState = EnemyState.Trace;
         }

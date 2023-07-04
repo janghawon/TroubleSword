@@ -14,7 +14,7 @@ public abstract class EnemyAttackChooser : MonoBehaviour
     protected float _atkCool;
     public bool canAttack;
 
-    public abstract void AttackChoose();
+    public abstract void AttackChoose(float damage);
 
     private void Awake()
     {

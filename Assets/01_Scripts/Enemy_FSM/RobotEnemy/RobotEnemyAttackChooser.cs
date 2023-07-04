@@ -62,7 +62,7 @@ public class RobotEnemyAttackChooser : EnemyAttackChooser
         canAttack = true;
     }
 
-    public override void AttackChoose()
+    public override void AttackChoose(float damage)
     {
         if(canAttack)
         {
