@@ -17,7 +17,7 @@ public class EnemyAnimation : MonoBehaviour
 
     public void AnimationSet(EnemyState currentState)
     {
-        if(canAnimating)
+        if (canAnimating)
         {
             if (currentState == EnemyState.Die)
             {

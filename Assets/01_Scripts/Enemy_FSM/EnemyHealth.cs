@@ -57,7 +57,7 @@ public class EnemyHealth : MonoBehaviour
     {
         _animator.SetBool("isReload", false);
         _eb.EnemyCurrentState = EnemyState.Hit;
-        yield return new WaitForSeconds(EnemyManager.Instance.RobotEnemyClipList[3].length + 0.1f);
+        yield return new WaitForSeconds(EnemyManager.Instance.RobotEnemyClipList[3].length);
         _na.enabled = true;
         _aec.canAttack = true;
         _eb.EnemyCurrentState = EnemyState.Idle;
