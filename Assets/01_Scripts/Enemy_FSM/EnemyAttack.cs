@@ -16,7 +16,7 @@ public abstract class EnemyAttack : MonoBehaviour
     {
         Vector3 dir = _pTrans.transform.position - thisParentEnemy.transform.position;
         float yRot = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
-        thisParentEnemy.transform.DORotate(new Vector3(0, yRot, 0), 0.5f);
+        thisParentEnemy.transform.DORotate(new Vector3(0, yRot, 0), 0.3f);
     }
 
     public abstract void AttackEvent(GameObject firePos);
