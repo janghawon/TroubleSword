@@ -27,10 +27,14 @@ public class EnemyGrenadeAttack : EnemyAttack
     {
         RaycastHit hit;
         Physics.Raycast(firePos.transform.position, transform.forward, out hit, 10);
-        if (hit.collider.gameObject.TryGetComponent<HealthFunc>(out HealthFunc hf))
+        if(hit.collider != null)
         {
-            hf.DamageCalcculate(_Edamage);
+            if (hit.collider.gameObject.TryGetComponent<HealthFunc>(out HealthFunc hf))
+            {
+                hf.DamageCalcculate(_Edamage);
+            }
         }
+        
         _line.enabled = true;
         _line.startWidth = 0.2f;
         _line.endWidth = 0.2f;
