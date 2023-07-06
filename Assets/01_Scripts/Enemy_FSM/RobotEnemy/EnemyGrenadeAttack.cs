@@ -6,6 +6,7 @@ using DG.Tweening;
 public class EnemyGrenadeAttack : EnemyAttack
 {
     [SerializeField] private GameObject _fireEffect;
+    [SerializeField] private GameObject _effectPos;
     [SerializeField] private float _Edamage;
     LineRenderer _line;
 
@@ -17,10 +18,10 @@ public class EnemyGrenadeAttack : EnemyAttack
     public override void AttackEvent(GameObject firePos)
     {
         GameObject effect = Instantiate(_fireEffect);
-        effect.transform.position = firePos.transform.position;
+        effect.transform.position = _effectPos.transform.position;
         Vector3 dir = transform.position +  -thisParentEnemy.transform.forward;
-        AttackLogic(firePos);
         thisParentEnemy.transform.DOMove(new Vector3(dir.x, thisParentEnemy.transform.position.y, dir.z), 0.3f);
+        AttackLogic(firePos);
     }
 
     private void AttackLogic(GameObject firePos)

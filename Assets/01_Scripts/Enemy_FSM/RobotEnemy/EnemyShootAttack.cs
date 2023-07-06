@@ -6,6 +6,7 @@ public class EnemyShootAttack : EnemyAttack
 {
     LineRenderer[] _line = new LineRenderer[3];
     [SerializeField] private GameObject _fireEffect;
+    [SerializeField] private GameObject _effectPos;
     [SerializeField] private float _Edamage;
 
     int count;
@@ -22,7 +23,7 @@ public class EnemyShootAttack : EnemyAttack
     public override void AttackEvent(GameObject firePos)
     {
         GameObject effect = Instantiate(_fireEffect);
-        effect.transform.position = firePos.transform.position;
+        effect.transform.position = _effectPos.transform.position;
         RaycastHit hit;
         if (Physics.Raycast(firePos.transform.position, transform.forward, out hit, 10))
         {
