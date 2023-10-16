@@ -1776,6 +1776,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Velocity: 8
   canMove: 1
+  canEnterPortal: 1
   blockRotationPlayer: 0
   desiredRotationSpeed: 0.1
   Speed: 10

@@ -16,34 +16,16 @@ public class PortalFunc : MonoBehaviour
 {
     public Direction thisDirection;
     public PortalFunc LinkPortal;
-    public bool canTeleport
-    {
-        get
-        {
-            return _canTeleport;
-        }
-        set
-        {
-            _canTeleport = value;
-            if(!_canTeleport)
-                StartCoroutine(TeleportCool());
-        }
-    }
 
-    IEnumerator TeleportCool()
-    {
-        yield return new WaitForSeconds(2);
-        _canTeleport = true;
-    }
-
-    private bool _canTeleport;
     [SerializeField] private float _distance;
     private GameObject _player;
+    private MovementInput _moveInput;
 
     private void Awake()
     {
         _distance = 2;
         _player = GameObject.Find("Player");
+        _moveInput = _player.GetComponent<MovementInput>();
     }
 
     private void Start()
@@ -57,21 +39,14 @@ public class PortalFunc : MonoBehaviour
         }
 
         PortalManager.Instance.CurrentPortal = this;
-        
-        if(LinkPortal != null)
-        {
-            _canTeleport = true;
-            LinkPortal.canTeleport = true;
-        }
     }
 
     private void CheckDistance()
     {
-        if(Vector3.Distance(transform.position, _player.transform.position) < _distance && _canTeleport)
+        if(Vector3.Distance(transform.position, _player.transform.position) < _distance && LinkPortal != null
+           && _moveInput.canEnterPortal)
         {
-            canTeleport = false;
-            LinkPortal.canTeleport = false;
-
+            _moveInput.canEnterPortal = false;
             Vector3 dir = (transform.position - _player.transform.position).normalized;
             dir.y = -dir.y;
             _player.transform.position = LinkPortal.transform.position + new Vector3(0, -0.7f, 0);

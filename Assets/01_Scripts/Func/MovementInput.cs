@@ -10,6 +10,7 @@ public class MovementInput : MonoBehaviour {
 
     public float Velocity;
 	public bool canMove;
+	public bool canEnterPortal;
     [Space]
 
 	private Animator anim;
