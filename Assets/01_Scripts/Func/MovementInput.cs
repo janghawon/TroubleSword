@@ -11,9 +11,11 @@ public class MovementInput : MonoBehaviour {
     public float Velocity;
 	public bool canMove;
 	public bool canEnterPortal;
+	public bool isRoll;
     [Space]
 
 	private Animator anim;
+	private FuncAnimator _fAnim;
 	private Camera cam;
 	private CharacterController controller;
 	private bool isGrounded;
@@ -46,10 +48,28 @@ public class MovementInput : MonoBehaviour {
 		anim = transform.Find("Visual").GetComponent<Animator> ();
 		cam = Camera.main;
 		controller = this.GetComponent<CharacterController> ();
+		_fAnim = anim.GetComponent<FuncAnimator>();
 	}
+
+	public IEnumerator EnterPortalCo()
+    {
+		canMove = false;
+		isRoll = true;
+
+		_fAnim.PortalRoll();
+		anim.SetFloat("blend", 0);
+		yield return new WaitForSeconds(3f);
+		canEnterPortal = true;
+    }
 	
 	void Update () 
 	{
+		if(isRoll)
+        {
+			transform.Translate(Vector3.forward * 0.03f);
+			transform.Translate(Vector3.down * 0.01f);
+        }
+
 		if (!canMove) return;
 		InputMagnitude ();
 
@@ -67,7 +87,6 @@ public class MovementInput : MonoBehaviour {
 		InputX = Input.GetAxis("Horizontal");
 		InputZ = Input.GetAxis("Vertical");
 
-		var camera = Camera.main;
 		var forward = cam.transform.forward;
 		var right = cam.transform.right;
 

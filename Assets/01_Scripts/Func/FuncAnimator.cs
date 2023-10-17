@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class FuncAnimator : MonoBehaviour
 {
-    private Transform _playerTrans;
+    private MovementInput _moveInput;
     [SerializeField] private Animator _animator;
    
     private readonly int _jumpHash = Animator.StringToHash("isJump");
@@ -16,7 +16,7 @@ public class FuncAnimator : MonoBehaviour
 
     private void Awake()
     {
-        _playerTrans = transform.parent;
+        _moveInput = transform.parent.GetComponent<MovementInput>();
     }
 
     public void PortalRoll()
@@ -26,6 +26,8 @@ public class FuncAnimator : MonoBehaviour
 
     public void RollEnd()
     {
+        _moveInput.isRoll = false;
+        _moveInput.canMove = true;
         _animator.SetBool(_rollHash, false);
     }
 
