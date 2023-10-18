@@ -26,9 +26,9 @@ public class FuncAnimator : MonoBehaviour
 
     public void RollEnd()
     {
+        _animator.SetBool(_rollHash, false);
         _moveInput.isRoll = false;
         _moveInput.canMove = true;
-        _animator.SetBool(_rollHash, false);
     }
 
     public void PortalJump()

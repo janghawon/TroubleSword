@@ -66,8 +66,8 @@ public class MovementInput : MonoBehaviour {
 	{
 		if(isRoll)
         {
-			transform.Translate(Vector3.forward * 0.03f);
-			transform.Translate(Vector3.down * 0.01f);
+			transform.Translate(Vector3.forward * 0.04f);
+			transform.Translate(Vector3.down * Mathf.Lerp(0.01f, 0.06f, Time.captureFramerate));
         }
 
 		if (!canMove) return;
