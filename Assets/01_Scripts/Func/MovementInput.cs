@@ -56,8 +56,8 @@ public class MovementInput : MonoBehaviour {
 		canMove = false;
 		isRoll = true;
 
-		_fAnim.PortalRoll();
-		anim.SetFloat("blend", 0);
+		_fAnim.PublishAnimation(AnimType.Roll);
+		
 		yield return new WaitForSeconds(3f);
 		canEnterPortal = true;
     }
@@ -67,7 +67,7 @@ public class MovementInput : MonoBehaviour {
 		if(isRoll)
         {
 			transform.Translate(Vector3.forward * 0.04f);
-			transform.Translate(Vector3.down * Mathf.Lerp(0.01f, 0.06f, Time.captureFramerate));
+			transform.Translate(Vector3.down * 0.015f);
         }
 
 		if (!canMove) return;

@@ -20,14 +20,11 @@ public class PortalFunc : MonoBehaviour
     [SerializeField] private float _distance;
     private GameObject _player;
     private MovementInput _moveInput;
-    private Camera _cam;
 
     private void Awake()
     {
-        _distance = 2;
         _player = GameObject.Find("Player");
         _moveInput = _player.GetComponent<MovementInput>();
-        _cam = Camera.main;
     }
 
     private void Start()
@@ -46,7 +43,7 @@ public class PortalFunc : MonoBehaviour
     private void CheckDistance()
     {
         if(Vector3.Distance(transform.position, _player.transform.position) < _distance && LinkPortal != null
-           && _moveInput.canEnterPortal)
+                            && _moveInput.canEnterPortal)
         {
             _moveInput.canEnterPortal = false;
             StartCoroutine(_moveInput.EnterPortalCo());

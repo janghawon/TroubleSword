@@ -1390,7 +1390,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.08013256, y: -0.53561586, z: 0.051150758, w: 0.83909357}
-  m_LocalPosition: {x: -2.7859588, y: 1.807845, z: -2.4712005}
+  m_LocalPosition: {x: -2.7859588, y: 2.043, z: -2.4712005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1465,11 +1465,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &1183537679 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9064724416250020025, guid: 96430e63869e9fe43b7d384ad5ba893b, type: 3}
-  m_PrefabInstance: {fileID: 6218899790407404331}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1207266034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,7 +1630,6 @@ GameObject:
   - component: {fileID: 1255363981}
   - component: {fileID: 1255363984}
   - component: {fileID: 1255363987}
-  - component: {fileID: 1255363988}
   - component: {fileID: 1255363989}
   m_Layer: 7
   m_Name: Player
@@ -1661,7 +1655,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.05
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.8, z: 0}
+  m_Center: {x: 0, y: 0.77, z: 0}
 --- !u!4 &1255363982
 Transform:
   m_ObjectHideFlags: 0
@@ -1670,7 +1664,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255363980}
   m_LocalRotation: {x: -0, y: -0.97701365, z: -0, w: 0.21317704}
-  m_LocalPosition: {x: -8.228327, y: -0.692155, z: 0.054790493}
+  m_LocalPosition: {x: -8.228327, y: -0.457, z: 0.054790493}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1723,10 +1717,10 @@ MonoBehaviour:
   OnDimensionPress:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1255363988}
-        m_TargetAssemblyTypeName: DimensionSkillFunc, Assembly-CSharp
-        m_MethodName: ShootSkill
-        m_Mode: 1
+      - m_Target: {fileID: 3134970148010532790}
+        m_TargetAssemblyTypeName: FuncAnimator, Assembly-CSharp
+        m_MethodName: PublishAnimation
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1749,19 +1743,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHP: 100
   _currentHP: 0
---- !u!114 &1255363988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1255363980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5dacf7f4c551a643a1f5a406d277f79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dimenBulletPrefab: {fileID: 6932270168893281038, guid: 0358c4efb9957894fa765e06506532b9, type: 3}
 --- !u!114 &1255363989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3246,7 +3227,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8389831121736468767}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.0849857, y: 0.275589, z: -0.65484023}
+  m_LocalPosition: {x: -2.0849857, y: 0.510744, z: -0.65484023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3371,25 +3352,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9064724416249926809, guid: 96430e63869e9fe43b7d384ad5ba893b, type: 3}
   m_PrefabInstance: {fileID: 6218899790407404331}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &3134970148010532789 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 9064724416259554813, guid: 96430e63869e9fe43b7d384ad5ba893b, type: 3}
+--- !u!114 &3134970148010532790 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3134970148010532790, guid: 96430e63869e9fe43b7d384ad5ba893b, type: 3}
   m_PrefabInstance: {fileID: 6218899790407404331}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3134970148010532790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1183537679}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5bfeb88b2c64344a934571732a687e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 3134970148010532789}
-  _rollAmount: 5
 --- !u!114 &3366580010535926845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3591,7 +3564,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7256876573506098525}
-  m_LocalRotation: {x: 0.102989644, y: -0.53402144, z: 0.06574105, w: 0.8365958}
+  m_LocalRotation: {x: 0.102989644, y: -0.53402144, z: 0.06574104, w: 0.8365957}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3698,10 +3671,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1255363982}
     m_Modifications:
-    - target: {fileID: 6218899791232178297, guid: 96430e63869e9fe43b7d384ad5ba893b, type: 3}
-      propertyPath: _player
-      value: 
-      objectReference: {fileID: 1255363980}
     - target: {fileID: 9064724416249926809, guid: 96430e63869e9fe43b7d384ad5ba893b, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3750,12 +3719,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Visual
       objectReference: {fileID: 0}
-    - target: {fileID: 9064724416259554813, guid: 96430e63869e9fe43b7d384ad5ba893b, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 9ed6127bc57fe994f8a6a74f91f836ff, type: 2}
-    m_RemovedComponents:
-    - {fileID: 6218899791232178299, guid: 96430e63869e9fe43b7d384ad5ba893b, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96430e63869e9fe43b7d384ad5ba893b, type: 3}
 --- !u!114 &6226484635942388000
 MonoBehaviour:
@@ -4101,7 +4065,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577960653576284704}
   m_LocalRotation: {x: 0.063365415, y: -0.000000015897665, z: 0.0000000010093907, w: 0.9979904}
-  m_LocalPosition: {x: -7.527354, y: -0.93441105, z: -2.1288493}
+  m_LocalPosition: {x: -7.527354, y: -0.69925606, z: -2.1288493}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -66,7 +66,6 @@ namespace UnlitWF
             if (version.HasValue()) {
                 version.downloadPage = URI_HEAD + version.downloadPage;
                 WFCommonUtility.SetLatestVersion(version);
-                Debug.LogFormat("UnlitWF, VersionCheck Succeed, LatestVersion is {0}", version.latestVersion);
             }
         }
     }

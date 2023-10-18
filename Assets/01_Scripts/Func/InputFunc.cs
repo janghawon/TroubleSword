@@ -9,7 +9,7 @@ public class InputFunc : MonoBehaviour
     Vector3 _dirInput;
     public UnityEvent OnAttackPress = null;
     public UnityEvent<Vector3> OnDashPress = null;
-    public UnityEvent OnDimensionPress = null;
+    public UnityEvent<AnimType> OnDimensionPress = null;
 
     void UpdateAttackInput()
     {
@@ -31,7 +31,7 @@ public class InputFunc : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E))
         {
-            OnDimensionPress?.Invoke();
+            OnDimensionPress?.Invoke(AnimType.Throw);
         }
     }
 

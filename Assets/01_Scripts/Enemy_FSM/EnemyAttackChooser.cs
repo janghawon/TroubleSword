@@ -20,7 +20,6 @@ public abstract class EnemyAttackChooser : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         Player = GameObject.Find("Player");
-        Debug.Log(_controller);
         _enemyAttackBank = transform.Find("AttackBank").gameObject;
         canAttack = true;
     }

@@ -6,12 +6,18 @@ public class DimensionSkillFunc : MonoBehaviour
 {
     [SerializeField] private GameObject _dimenBulletPrefab;
 
-    
+    MovementInput mi;
+
+    private void Awake()
+    {
+        mi = transform.parent.GetComponent<MovementInput>();
+    }
+
     public void ShootSkill()
     {
-        GameObject bullet = Instantiate(_dimenBulletPrefab);
-        bullet.transform.position = this.transform.position;
-        bullet.transform.position += new Vector3(0, 1, 0);
+        if (mi.isRoll) return;
+        mi.canMove = true;
+        GameObject bullet = Instantiate(_dimenBulletPrefab, transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity);
         BulletFunc bf = bullet.GetComponent<BulletFunc>();
 
         bullet.transform.rotation = this.transform.rotation;

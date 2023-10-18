@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1475109333
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1475109334}
-  m_Layer: 7
-  m_Name: RayAnchor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1475109334
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475109333}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.007, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9064724416249926809}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &529111136668909138
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,8 +1227,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9064724416249926809}
   - component: {fileID: 9064724416259554813}
-  - component: {fileID: 6218899791232178299}
-  - component: {fileID: 6218899791232178297}
+  - component: {fileID: 3134970148010532790}
+  - component: {fileID: 3134970148010532791}
   m_Layer: 7
   m_Name: Visual
   m_TagString: Untagged
@@ -1281,7 +1250,6 @@ Transform:
   m_Children:
   - {fileID: 9064724416249926173}
   - {fileID: 9064724416249926171}
-  - {fileID: 1475109334}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1295,7 +1263,7 @@ Animator:
   m_GameObject: {fileID: 9064724416250020025}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 34f6e0a0773eee549b1a545d8773c460, type: 3}
-  m_Controller: {fileID: 9100000, guid: 06038826dd8706440bf041c33dce13a0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9ed6127bc57fe994f8a6a74f91f836ff, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1306,7 +1274,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6218899791232178299
+--- !u!114 &3134970148010532790
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1315,18 +1283,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9064724416250020025}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02f598d18d9a4e145bcfbb625fc4813e, type: 3}
+  m_Script: {fileID: 11500000, guid: d5bfeb88b2c64344a934571732a687e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rayAnchor: {fileID: 1475109333}
-  _dashSpeed: 20
-  _dashDuration: 0.25
-  _dashPos: {fileID: 6218899791490808873}
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  _feedbackPrefab: {fileID: 8978967143600808761, guid: cca34620ebca1c14d8d658d1b9b3978f, type: 3}
---- !u!114 &6218899791232178297
+  _animator: {fileID: 9064724416259554813}
+--- !u!114 &3134970148010532791
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1335,19 +1296,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 9064724416250020025}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39ae7038106d6574087c2b4d9c0f3c6b, type: 3}
+  m_Script: {fileID: 11500000, guid: b5dacf7f4c551a643a1f5a406d277f79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  _effectPos: {fileID: 6218899791568037279}
-  _player: {fileID: 0}
-  _startColor: {r: 0.51512635, g: 1, b: 0, a: 0}
-  _endColor: {r: 0.7646351, g: 0, b: 1, a: 0}
-  _feedbackPrefab: {fileID: 8978967143600808761, guid: cca34620ebca1c14d8d658d1b9b3978f, type: 3}
-  _atkRange: 1.65
-  _atkAngle: 140
+  _dimenBulletPrefab: {fileID: 6932270168893281038, guid: 0358c4efb9957894fa765e06506532b9, type: 3}
 --- !u!1 &9064724416250020027
 GameObject:
   m_ObjectHideFlags: 0
