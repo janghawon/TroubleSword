@@ -18,7 +18,7 @@ public class MovementInput : MonoBehaviour {
 	private FuncAnimator _fAnim;
 	private Camera cam;
 	private CharacterController controller;
-	private bool isGrounded;
+	[SerializeField] private bool isGrounded;
 	private Vector3 desiredMoveDirection;
 	private float InputX;
 	private float InputZ;
@@ -66,8 +66,8 @@ public class MovementInput : MonoBehaviour {
 	{
 		if(isRoll)
         {
-			transform.Translate(Vector3.forward * 0.04f);
-			transform.Translate(Vector3.down * 0.015f);
+			transform.Translate(Vector3.forward * 0.05f);
+			transform.Translate(Vector3.down * 0.05f);
         }
 
 		if (!canMove) return;

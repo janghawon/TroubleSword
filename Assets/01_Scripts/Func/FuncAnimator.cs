@@ -56,16 +56,20 @@ public class FuncAnimator : MonoBehaviour
         }
     }
 
+    public void LandEnd()
+    {
+        _moveInput.isRoll = false;
+    }
+
     public void BehaviourEnd()
     {
-        _animator.SetBool(_moveHash, false);
+        //_animator.SetBool(_moveHash, false);
         switch (_selectType)
         {
             case AnimType.Jump:
                 break;
             case AnimType.Roll:
                 {
-                    _moveInput.isRoll = false;
                     _moveInput.canMove = true;
                 }
                 break;

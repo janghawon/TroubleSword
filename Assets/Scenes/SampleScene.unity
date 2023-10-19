@@ -1759,6 +1759,7 @@ MonoBehaviour:
   canMove: 1
   canEnterPortal: 1
   isRoll: 0
+  isGrounded: 0
   blockRotationPlayer: 0
   desiredRotationSpeed: 0.1
   Speed: 10
@@ -2529,7 +2530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7673487251499248760, guid: c98043d57e0190845b790d7b92990bee, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7673487251499544664, guid: c98043d57e0190845b790d7b92990bee, type: 3}
       propertyPath: m_RootOrder
@@ -3564,7 +3565,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7256876573506098525}
-  m_LocalRotation: {x: 0.102989644, y: -0.53402144, z: 0.06574104, w: 0.8365957}
+  m_LocalRotation: {x: 0.102989644, y: -0.53402144, z: 0.06574103, w: 0.8365957}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4064,7 +4065,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577960653576284704}
-  m_LocalRotation: {x: 0.063365415, y: -0.000000015897665, z: 0.0000000010093907, w: 0.9979904}
+  m_LocalRotation: {x: 0.06336541, y: 0.000000012319726, z: -7.8221635e-10, w: 0.9979904}
   m_LocalPosition: {x: -7.527354, y: -0.69925606, z: -2.1288493}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

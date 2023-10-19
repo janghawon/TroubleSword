@@ -15,7 +15,7 @@ public class DimensionSkillFunc : MonoBehaviour
 
     public void ShootSkill()
     {
-        if (mi.isRoll) return;
+        if (!mi.canEnterPortal) return;
         mi.canMove = true;
         GameObject bullet = Instantiate(_dimenBulletPrefab, transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity);
         BulletFunc bf = bullet.GetComponent<BulletFunc>();
